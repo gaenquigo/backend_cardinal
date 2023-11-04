@@ -1,0 +1,12 @@
+type Permission {
+    id: ID!
+    name: String!
+    module: String
+    created_at: DateTime
+    updated_at: DateTime
+    rols: [Rol!]! @belongsToMany
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    permission: [Permission!]! @all
+}

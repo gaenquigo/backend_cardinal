@@ -1,0 +1,22 @@
+type StrategicLineHistory {
+    id: ID
+    history: String
+    pai_history_id: ID
+    parent_id: ID
+    pai: PAI! @belongsTo
+    programsHistory: [ProgramHistory] @hasMany
+}
+
+input registerStrategicLineHistoryInput {
+    history: String! @rules(apply: ["required", "string"])
+    pai_history_id: ID! @rules(apply: ["required", "exists:pais_history,id"])
+    parent_id: ID! @rules(apply: ["required", "exists:strategic_lines,id"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    strategicLinesHistory: [StrategicLineHistory!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createStrategicLineHistory(input: registerStrategicLineHistoryInput! @spread): StrategicLineHistory! @create
+}

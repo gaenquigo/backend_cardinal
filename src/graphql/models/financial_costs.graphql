@@ -1,0 +1,67 @@
+
+type Financial_cost {
+    id: ID
+    year: String          
+    value_bugeted: String
+    value_comitted: String
+    value_required: String
+    own: Boolean
+    nation: Boolean
+    royalties: Boolean
+    funds: Boolean
+    value_paid: String
+    functioning: Boolean
+    compensation: Boolean
+    debt_service: Boolean
+    complete: Boolean
+    version: Int
+    cost_sources: Cost_Source
+    p_a_i_id: Int!
+    group_id: Int!
+    group: Group! @belongsTo
+    pai: PAI! @belongsTo
+}
+
+input RegisterFinancialCostInput {    
+    id: ID
+    year: String          
+    value_bugeted: String
+    value_comitted: String
+    value_required: String
+    value_paid: String
+    p_a_i_id: Int!
+    cost_sources_id: Int
+    own: Boolean
+    nation: Boolean
+    royalties: Boolean
+    funds: Boolean 
+    functioning: Boolean
+    compensation: Boolean
+    debt_service: Boolean
+    complete: Boolean
+    version: Int
+    group_id: Int! @rules(apply: ["required", "exists:groups,id"])
+}
+
+input idPaiInput {
+    p_a_i_id: Int! @eq @rules(apply: ["required"])
+}
+
+input inputGroup {
+    p_a_i_id: Int!@where(p_a_i_id: p_a_i_id)
+    group_id: Int! @where(group_id: group_id)
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    
+    createfinancialCosts(input: RegisterFinancialCostInput @spread): Financial_cost @create   
+    updatefinancialCosts(input: RegisterFinancialCostInput @spread): Financial_cost @update
+}
+
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    financialCosts: [Financial_cost!]! @all    
+    financialCostsByPaiId(input: idPaiInput @spread): [Financial_cost!]! @all
+    financialCostsByGroup(input: inputGroup @spread): [Financial_cost!]! @all
+  
+}

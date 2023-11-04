@@ -1,0 +1,77 @@
+type ObjectiveProduct {
+    id: ID!
+    objective_id: ID!
+    product_id: Int
+    product_other: String
+    goal_1: Float
+    goal_1_balance: Float
+    goal_2: Float
+    goal_2_balance: Float
+    goal_3: Float
+    goal_3_balance: Float
+    goal_4: Float
+    goal_4_balance: Float
+    total_goal: Float!
+    weighing: Int!
+    unit_goal: Int!
+    indicator_national_id: Int
+    indicator_ods_id: Int!
+    national_policy_id: Int!
+    product: Domain @belongsTo
+}
+
+input newObjectiveProductInput {
+    objective_id: ID! @rules(apply: ["required","exists:objectives,id"])
+    product_id: Int
+    product_other: String
+    goal_1: Float
+    goal_1_balance: Float
+    goal_2: Float
+    goal_2_balance: Float
+    goal_3: Float
+    goal_3_balance: Float
+    goal_4: Float
+    goal_4_balance: Float
+    total_goal: Float! @rules(apply: ["required"])
+    weighing: Int! @rules(apply: ["numeric", "between:1,100", "required"])
+    unit_goal: Int! @rules(apply: ["required"])
+    indicator_national_id: Int
+    indicator_ods_id: Int! @rules(apply: ["required"])
+    national_policy_id: Int! @rules(apply: ["required"])
+}
+
+input editObjectiveProductInput {
+    id: ID! @rules(apply: ["required", "exists:objective_products,id"])
+    objective_id: ID @rules(apply: ["exists:objectives,id"])
+    product_id: Int
+    product_other: String
+    goal_1: Float
+    goal_1_balance: Float
+    goal_2: Float
+    goal_2_balance: Float
+    goal_3: Float
+    goal_3_balance: Float
+    goal_4: Float
+    goal_4_balance: Float
+    total_goal: Float
+    weighing: Int @rules(apply: ["numeric", "between:1,100"])
+    unit_goal: Int
+    indicator_national_id: Int
+    indicator_ods_id: Int
+    national_policy_id: Int
+}
+
+input idObjectiveProductInput {
+    id: ID! @eq @rules(apply: ["required", "exists:objective_products,id"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    objectiveProducts: [ObjectiveProduct!]! @all
+    objectiveProductById(input: idObjectiveProductInput @spread): ObjectiveProduct @find
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createObjectiveProduct(input: newObjectiveProductInput, @spread): ObjectiveProduct @create
+    updateObjectiveProduct(input: editObjectiveProductInput, @spread): ObjectiveProduct @update
+    deleteObjectiveProduct(input: idObjectiveProductInput!, @spread): ObjectiveProduct @delete
+}

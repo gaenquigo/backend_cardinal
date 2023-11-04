@@ -1,0 +1,35 @@
+type Project {
+    id: ID!
+    program_id: Int!
+    project: String!
+    weighing: Int!
+    program: Program! @belongsTo
+    objectives: [Objective]! @hasMany
+}
+
+input idProjectInput {
+    id: ID! @eq @rules(apply: ["required", "exists:projects,id"])
+}
+
+input RegisterProjectInput {
+    program_id: Int! @rules(apply: ["required", "exists:programs,id"])
+    project: String! @rules(apply: ["required"])
+    weighing: Int! @rules(apply: ["required", "numeric", "between:1,100"])
+}
+
+input editProjectInput {
+    id: ID! @eq @rules(apply: ["exists:projects,id"])
+    program_id: Int @rules(apply: ["exists:programs,id"])
+    project: String
+    weighing: Int @rules(apply: ["numeric", "between:1,100"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    projects: [Project!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteProject(input: idProjectInput! @spread): Project! @delete
+    createProject(input: RegisterProjectInput! @spread): Project! @create
+    updateProject(input: editProjectInput! @spread): Project! @update
+}

@@ -1,0 +1,25 @@
+type Permission_Rol {
+    id: ID!
+    Permission: Permission!
+    Rol: Rol!
+    created_at: DateTime
+    updated_at: DateTime
+}
+
+input crudPermissionArrayRolInput {
+    rol_id: Int! @rules(apply: ["required","exists:rols,id"])
+    permission_id: [Int]! @rules(apply: ["required","exists:permissions,id"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    PermissionRol: [Permission_Rol!]! @all
+}
+
+type Permission_Rol_Without_Id {
+    Rol: Rol!
+    Permissions: [Permission]!
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    crudArrayPermissionRol(input: crudPermissionArrayRolInput @spread): Permission_Rol_Without_Id!
+}

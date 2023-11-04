@@ -1,0 +1,63 @@
+type Cost_Source {
+    id: ID 
+    father_id: Int
+    code: String!
+    name: String!
+    description: String
+    final_level: Boolean
+    functioning: Boolean
+    compensation: Boolean
+    debt_service: Boolean
+    cost_sources: [Cost_Source] @hasMany
+    parent_id: Int
+    group_id: Int
+    created_at: DateTime!
+    updated_at: DateTime!    
+}
+
+input idCostSourceInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input idCostSourceCodeInput {
+    code: String! @eq @rules(apply: ["required"])
+}
+
+input RegisterCostSourceInput {    
+    id: ID  
+    father_id: Int
+    code: String! @rules(apply: ["required"])
+    name: String! @rules(apply: ["required"])
+    description: String @rules(apply: ["required"])
+    final_level: Boolean @rules(apply: ["required"])
+    functioning: Boolean
+    compensation: Boolean
+    debt_service: Boolean
+    parent_id: Int 
+    group_id: Int 
+}
+
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    CostSources(orderBy: [OrderByClause!] @orderBy): [Cost_Source!]! @all
+    CostSourceById(input: idCostSourceInput @spread): Cost_Source @find
+    CostgSourceByCode(input: idCostSourceCodeInput @spread): Cost_Source @find
+}
+
+
+input OrderByClause{
+    field: String!
+    order: SortOrder!
+}
+
+enum SortOrder {
+    ASC
+    DESC
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteCostSources(input: idCostSourceInput! @spread): Cost_Source! @delete
+    createCostSources(input: RegisterCostSourceInput! @spread): Cost_Source! @create
+    updateCostSources(input: RegisterCostSourceInput! @spread): Cost_Source! @update
+}
+

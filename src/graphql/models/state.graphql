@@ -1,0 +1,11 @@
+type State {
+    id: ID!
+    name: String!
+    country_id: ID!
+    dialing:  String!
+    country: Country!
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    state: [State!]! @all
+}

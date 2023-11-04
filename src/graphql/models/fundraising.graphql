@@ -1,0 +1,54 @@
+type Fundraising {
+    id: ID!
+    value:String !
+    date: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    implementation_id: Int!
+    financial_plans_id: Int!
+    collections:String
+}
+input createImplementationInput {
+    id: ID
+    value:String !
+    date: String!
+    created_at: DateTime
+    updated_at: DateTime
+    financial_plans_id: Int!
+    collections:String
+}
+input RegisterFundraisinInput {
+    id: ID
+    value:String !
+    date: String!
+    created_at: DateTime
+    updated_at: DateTime
+    implementation_id: Int!
+    financial_plans_id: Int!
+    collections:String
+}
+input idImplementationInput {
+    id: ID! @eq @rules(apply: ["required"])
+ 
+}
+input idPlanInput {
+   financial_plans_id: [ID]! @eq @rules(apply: ["required"])
+ 
+}
+input EditFundraisings {
+    id: ID! @eq @rules(apply: ["required"])
+    value:String
+    date: String
+    implementation_id: Int
+    financial_plans_id: Int
+    collections:String
+}
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createFundraising(input: createImplementationInput! @spread): Fundraising! @create
+    updateFundraising(input: EditFundraisings! @spread): Fundraising! @update
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    fundraisings: [Fundraising!]! @all    
+    fundraisingsByPlan(input: idPlanInput @spread): [Fundraising!]! @all   
+}

@@ -1,0 +1,48 @@
+type Other_data {
+    id: ID!
+    variable_name: String!
+    type: Int!
+    value: String
+    variable_id: Int
+    indicator_id: Int
+    indicator: Indicator @belongsTo
+    typeOtherDataDomain: Domain @hasOne
+}
+
+input otherDataIndicatorIdInput {
+    indicator_id: Int! @eq @rules(apply: ["required"])
+}
+
+input createOtherDataInput {
+    id: ID
+    variable_name: String! @rules(apply: ["required"])
+    type: Int! @rules(apply: ["required"])
+    value: String
+    indicator_id: Int
+}
+
+input updateOtherDataInput {
+    id: ID! @eq @rules(apply: ["required"])
+    variable_name: String! @rules(apply: ["required"])
+    type: Int! @rules(apply: ["required"])
+    value: String
+    indicator_id: Int
+}
+
+input deleteOtherDataInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input deleteAllOtherDataInput {
+    id: [ID] @eq @rules(apply: ["required"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    otherDataByIdIndicator(input: otherDataIndicatorIdInput! @spread): [Other_data!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteOtherData(input: deleteOtherDataInput! @spread): Other_data! @delete
+    deleteAllOtherData(input: deleteAllOtherDataInput! @spread): [Other_data]! @delete
+    createOtherData(input: createOtherDataInput! @spread): Other_data! @create
+}

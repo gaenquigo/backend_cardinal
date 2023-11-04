@@ -1,0 +1,101 @@
+type Activity {
+    id: ID!
+    objective_id: ID!
+    product_id: Int!
+    name: String!
+    goal: Float
+    goal_1: Float
+    goal_2: Float
+    goal_3: Float
+    goal_4: Float
+    weighing: Int!
+    answer_sentence: String
+    geometry: Int
+    ocde_category_id: ID
+    ocde_indicator_id: ID
+    indicator_id: ID 
+    variable_id: ID
+    objective: Objective @belongsTo
+    activity_sources: [ActivitySource] @hasMany
+    indicator_activities: [Indicator_activity] @hasMany
+    otherDataYear: [OtherDataYear] @hasMany
+
+    evidences_advances: [EvidenceAdvance] @hasMany
+    ocdeCategory: Domain @belongsTo
+    ocdeIndicator: Domain @belongsTo
+    product: Domain @belongsTo
+    indicator: Indicator @hasOne
+    variable: Variable @hasOne
+}
+
+input newActivityInput {
+    objective_id: ID! @rules(apply: ["required","exists:objectives,id"])
+    product_id: Int! @rules(apply: ["required"])
+    name: String! @rules(apply: ["required", "string"])
+    goal: Float
+    goal_1: Float
+    goal_2: Float
+    goal_3: Float
+    goal_4: Float
+    weighing: Int! @rules(apply: ["numeric", "between:1,100"])
+    ocde_category_id: ID @rules(apply: ["nullable", "exists:domains,id"])
+    ocde_indicator_id: ID @rules(apply: ["nullable", "exists:domains,id"])
+    indicator_id: ID @rules(apply: ["nullable", "exists:indicators,id"])
+    variable_id: ID @rules(apply: ["nullable", "exists:variables,id"])
+    answer_sentence: String
+    geometry: Int
+    indicator_activities: CreateActivitiesIndicatorBelongsTo
+    otherDataYear: CreateOtherDataYearBelongsTo
+}
+
+input editActivityInput {
+    id: ID! @rules(apply: ["required", "exists:activities,id"])
+    objective_id: ID @rules(apply: ["exists:objectives,id"])
+    product_id: ID
+    name: String @rules(apply: ["string"])
+    goal: Float
+    goal_1: Float
+    goal_2: Float
+    goal_3: Float
+    goal_4: Float
+    weighing: Int @rules(apply: ["numeric", "between:1,100"])    
+    answer_sentence: String
+    ocde_category_id: ID @rules(apply: ["nullable", "exists:domains,id"])
+    ocde_indicator_id: ID @rules(apply: ["nullable", "exists:domains,id"])
+    indicator_id: ID @rules(apply: ["nullable", "exists:indicators,id"])
+    variable_id: ID @rules(apply: ["nullable", "exists:variables,id"])
+    geometry: Int
+    indicator_activities: CreateActivitiesIndicatorBelongsTo
+    otherDataYear: CreateOtherDataYearBelongsTo
+}
+
+input CreateActivitiesIndicatorBelongsTo {
+    create: [createActivityIndicatorInput]
+    update: [updateActivityIndicatorInput]
+    delete: [ID]
+}
+
+input CreateOtherDataYearBelongsTo {
+    create: [createOtherDataYearInput]
+    update: [updateOtherDataYearInput]
+    delete: [deleteOtherDataInput]
+}
+
+input idActivityInput {
+    id: ID! @eq @rules(apply: ["required", "exists:activities,id"])
+}
+
+input idInput {
+    id: ID! @eq @rules(apply: ["required", "exists:activities,id"])
+}
+extend type Query @middleware(checks: ["auth:api"]) {
+    activities: [Activity!]! @all
+    activityById(input: idActivityInput @spread): Activity @find
+    activityByID(input: idInput @spread): Activity @find
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createActivity(input: newActivityInput, @spread): Activity @create
+    updateActivity(input: editActivityInput, @spread): Activity @update
+    deleteActivity(input: idActivityInput!, @spread): Activity @delete
+}

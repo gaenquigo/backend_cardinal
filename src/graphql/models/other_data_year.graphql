@@ -1,0 +1,35 @@
+type OtherDataYear {
+    id: ID!
+    year: Int!
+    value: String
+    other_data_id: Int!
+    activity_id: Int!
+    indicatorActivity: Indicator_activity @belongsTo
+    otherData: Other_data @hasOne
+}
+
+input createOtherDataYearInput {
+    id: ID
+    year: Int!
+    value: String
+    other_data_id: Int!
+}
+
+input deleteOtherDataInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input updateOtherDataYearInput {
+    id: ID! @eq @rules(apply: ["required"])
+    year: Int!
+    value: String
+    other_data_id: Int!
+}
+
+input deleteAllOtherDataYearInput {
+    id: [ID] @eq @rules(apply: ["required"])
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {    
+    deleteAllOtherDataYear(input: deleteAllOtherDataYearInput! @spread): [OtherDataYear]! @delete
+}

@@ -1,0 +1,76 @@
+type Financing_Source {
+    id: ID!
+    father_id: Int
+    code: String!
+    name: String!
+    description: String
+    type_id: Int
+    domains : [Domain] @hasMany
+    final_level: Boolean    
+    parent_id: Int
+    group_id: Int
+    corporation: Boolean
+    financing_sources: [Financing_Source] @hasMany
+    financial_Plan: Financial_Plan @belongsTo
+    created_at: DateTime!
+    updated_at: DateTime!    
+}
+
+input idGroupInput {
+    group_id: Int! @eq @rules(apply: ["required"])
+}
+input idFinancingSourceInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input idFinancingSourceCodeInput {
+    code: String! @eq @rules(apply: ["required"])
+}
+
+input RegisterFinancingSourceInput {    
+    father_id: Int
+    code: String! @rules(apply: ["required"])
+    name: String! @rules(apply: ["required"])
+    description: String @rules(apply: ["required"])
+    type_id: Int
+    final_level: Boolean @rules(apply: ["required"])    
+    parent_id: Int
+    group_id: Int
+    corporation: Boolean
+}
+
+input editFinancingSourceInput {
+    id: ID! @eq @rules(apply: ["required"])
+    father_id: Int
+    code: String! @rules(apply: ["required"])
+    name: String! @rules(apply: ["required"])
+    description: String @rules(apply: ["required"])
+    type_id: Int
+    final_level: Boolean @rules(apply: ["required"])
+    parent_id: Int
+    group_id: Int
+    corporation:Boolean
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    FinancingSources(orderBy: [OrderByClause!] @orderBy): [Financing_Source!]! @all
+    financingSourceById(input: idFinancingSourceInput @spread): Financing_Source @find
+    financingSourceByGorupId(group_id: Int @eq @rules(apply: ["exists:groups,id"])): [Financing_Source!]! @all
+    FinancingSourceByCode(input: idFinancingSourceCodeInput @spread): Financing_Source @find
+}
+
+input OrderByClause{
+    field: String!
+    order: SortOrder!
+}
+
+enum SortOrder {
+    ASC
+    DESC
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteFinancingSources(input: idFinancingSourceInput! @spread): Financing_Source! @delete
+    createFinancingSources(input: RegisterFinancingSourceInput! @spread): Financing_Source! @create
+    updateFinancingSources(input: editFinancingSourceInput! @spread): Financing_Source! @update
+}

@@ -1,0 +1,33 @@
+type PAIHistory {
+    id: ID!
+    history: String
+    parent_id: ID
+    version: Int
+    parent: PAI @belongsTo
+    strategicLinesHistory: [StrategicLineHistory] @hasMany
+}
+
+input registerPAIHistoryInput {
+    history: String! @rules(apply: ["required", "string"])
+    parent_id: ID! @rules(apply: ["required", "exists:pais,id"])
+    version: Int! @rules(apply: ["required"])
+}
+
+input updatePAIHistoryInput {
+    id: ID
+    history: String
+    parent_id: Int
+    version: Int
+}
+
+
+extend type Query @middleware(checks: ["auth:api"]){
+    paisHistory: [PAIHistory!]! @all
+    paisHistoryByParent(parent_id: Int @eq @rules(apply: ["exists:pais,id"])): [PAIHistory!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createPAIHistory(input: registerPAIHistoryInput! @spread): PAIHistory! @create
+    updatePAIHistory(input: updatePAIHistoryInput! @spread): PAIHistory! @update
+   
+}

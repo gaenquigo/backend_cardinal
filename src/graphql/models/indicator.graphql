@@ -1,0 +1,141 @@
+type Indicator {
+    id: ID!
+    type: Int!
+    typeIndicatorDomain: Domain @hasOne
+    calcule_type: Int!
+    calculeTypeDomain: Domain @hasOne
+    category_type: Int
+    categoryTypeDomain: Domain @hasOne
+    name: String!
+    abbreviated_name: String!
+    definition: String!
+    url: String
+    unit_id: Int
+    units: Domain @hasOne
+    result_name: String
+    complementary_result: String
+    complementary_in: Boolean
+    calcule_in: Boolean
+    parent_id: Int
+    group_id: Int
+    otherData: [Other_data] @hasMany
+    variables: [Variable] @hasMany
+    indicatorVariable: [IndicatorVariable] @hasMany
+    indicatorAccount: [IndicatorAccount] @hasMany
+    indicatorIediVariable: [IndicatorIediVariable] @hasMany
+    files: [File] @hasMany
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+input idIndicatorInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input deleteIndicatorsInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input createIndicatorsInput {
+    type: Int! @rules(apply: ["required"])
+    calcule_type: Int! @rules(apply: ["required"])
+    category_type: Int
+    name: String! @rules(apply: ["required"])
+    abbreviated_name: String! @rules(apply: ["required"])
+    definition: String! @rules(apply: ["required"])
+    url: String
+    unit_id: Int
+    result_name: String
+    complementary_result: String
+    complementary_in: Boolean
+    calcule_in: Boolean
+    parent_id: Int
+    group_id: Int
+    otherData: CreateOtherDataHasMany
+    variables: CreateVariablesHasMany
+    indicatorVariable: CreateIndicatorVariablesHasMany
+    indicatorAccount: CreateIndicatorAccountHasMany
+    indicatorIediVariable: CreateIndicatorIediVariableHasMany
+    files: CreateFilesHasMany
+}
+
+input updateIndicatorsInput {
+    id: ID! @eq @rules(apply: ["required"])
+    type: Int! @rules(apply: ["required"])
+    calcule_type: Int! @rules(apply: ["required"])
+    category_type: Int
+    name: String! @rules(apply: ["required"])
+    abbreviated_name: String! @rules(apply: ["required"])
+    definition: String! @rules(apply: ["required"])
+    url: String
+    unit_id: Int
+    result_name: String
+    complementary_result: String
+    complementary_in: Boolean
+    calcule_in: Boolean
+    parent_id: Int
+    group_id: Int
+    otherData: CreateOtherDataHasMany
+    variables: CreateVariablesHasMany
+    indicatorVariable: CreateIndicatorVariablesHasMany
+    indicatorAccount: CreateIndicatorAccountHasMany
+    indicatorIediVariable: CreateIndicatorIediVariableHasMany
+    files: CreateFilesHasMany
+}
+
+input CreateOtherDataHasMany {
+    create: [createOtherDataInput]
+    update: [updateOtherDataInput]
+    delete: [deleteOtherDataInput]
+}
+
+input CreateVariablesHasMany {
+    create: [createVariableInput]
+    update: [updateVariableInput]
+}
+
+input CreateIndicatorVariablesHasMany {
+    create: [createIndicatorVariableInput]
+    update: [updateIndicatorVariableInput]
+    delete: [deleteIndicatorVariableInput]
+}
+
+input CreateIndicatorAccountHasMany {
+    create: [createIndicatorAccountInput]
+    update: [updateIndicatorAccountInput]
+    delete: [deleteIndicatorAccountInput]
+}
+
+input CreateIndicatorIediVariableHasMany {
+    create: [createIndicatorIediVariableInput]
+    update: [updateIndicatorIediVariableInput]
+    delete: [deleteIndicatorIediVariableInput]
+}
+
+input CreateFilesHasMany {
+    create: [newFileInput]
+    update: [editFileInput]
+    delete: [idFileInput]
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    Indicators(orderBy: [OrderByClause!] @orderBy): [Indicator!]! @all
+    IndicatorsById(input: idIndicatorInput @spread): Indicator @find
+    IndicatorById(id: ID! @eq): Indicator! @find
+}
+
+input OrderByClause{
+    field: String!
+    order: SortOrder!
+}
+
+enum SortOrder {
+    ASC
+    DESC
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteIndicators(input: deleteIndicatorsInput! @spread): Indicator! @delete
+    updateIndicators(input: updateIndicatorsInput! @spread): Indicator! @update
+    createIndicators(input: createIndicatorsInput! @spread): Indicator! @create
+}

@@ -1,0 +1,23 @@
+type ProgramHistory {
+    id: ID
+    history: String
+    strategic_line_history_id: ID
+    parent_id: ID
+    strategicLineHistory: StrategicLineHistory @belongsTo
+    parent: Program @belongsTo
+    projectsHistory: [ProjectHistory] @hasMany
+}
+
+input registerProgramHistoryInput {
+    history: String! @rules(apply: ["required", "string"])
+    strategic_line_history_id: ID! @rules(apply: ["required", "exists:strategic_lines_history,id"])
+    parent_id: ID! @rules(apply: ["required", "exists:programs,id"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    programsHistory: [ProgramHistory!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createProgramHistory(input: registerProgramHistoryInput! @spread): ProgramHistory! @create
+}

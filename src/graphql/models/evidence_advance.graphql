@@ -1,0 +1,88 @@
+type EvidenceAdvance {
+    id: ID!
+    year: Int!
+    value: Float!
+    date_report: String!
+    type: String
+    how_is_done: String
+    contract_number: String
+    description: String
+    state_id: ID
+    value_state: Int
+    evidence_advance_id: ID
+    activity_id: ID!
+    activity: Activity! @belongsTo
+    evidence: EvidenceAdvance @belongsTo
+    advances: [EvidenceAdvance] @belongsToMany
+    evidenceFinancial: [EvidenceFinancial] @hasMany
+    payments: [Payment] @hasMany
+    rezago: Boolean
+    indicator_activities: [Indicator_activity] @hasMany
+    otherDataYear: [OtherDataYear] @hasMany
+}
+
+input newEvidenceAdvanceInput {
+    year: Int! @rules(apply: ["required", "numeric", "between:1,4"])
+    value: Float! @rules(apply: ["required"])
+    date_report: String! @rules(apply: ["required"])
+    type: String
+    how_is_done: String
+    contract_number: String
+    description: String
+    state_id: ID @rules(apply: ["nullable", "exists:domains,id"])
+    value_state: String
+    evidence_advance_id: ID @rules(apply: ["nullable", "exists:evidence_advance,id"])
+    activity_id: ID! @rules(apply: ["required", "exists:activities,id"])
+    rezago: Boolean
+    indicator_activities: createIndicatorActivitiesHasMany
+    otherDataYear: createOtherDataYearHasMany
+}
+
+input editEvidenceAdvanceInput {
+    id: ID! @rules(apply: ["required", "exists:evidence_advance,id"])
+    year: Int @rules(apply: ["numeric", "between:1,4"])
+    value: Float
+    date_report: String
+    type: String
+    how_is_done: String
+    contract_number: String
+    description: String
+    state_id: ID @rules(apply: ["nullable", "exists:domains,id"])
+    value_state: String
+    evidence_advance_id: ID @rules(apply: ["nullable", "exists:evidence_advance,id"])
+    activity_id: ID @rules(apply: ["exists:activities,id"])
+    rezago: Boolean
+    indicator_activities: createIndicatorActivitiesHasMany
+    otherDataYear: createOtherDataYearHasMany
+}
+
+input createIndicatorActivitiesHasMany {
+    create: [createActivityIndicatorInput]
+    update: [updateActivityIndicatorInput]
+    delete: [DeleteIndicatorActivies]
+}
+
+input createOtherDataYearHasMany {
+    update: [updateOtherDataYearInput]
+}
+
+input idEvidenceAdvanceInput {
+    id: ID! @eq @rules(apply: ["required", "exists:evidence_advance,id"])
+}
+
+input idActivityInput {
+    activity_id: ID! @eq @rules(apply: ["required"])
+    evidence_advance_id: ID @eq
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    evidenceAdvance: [EvidenceAdvance!]! @all
+    evidenceAdvanceById(input: idEvidenceAdvanceInput @spread): EvidenceAdvance @find
+    evidenceAdvanceByActivityId(input: idActivityInput @spread): [EvidenceAdvance!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createEvidenceAdvance(input: newEvidenceAdvanceInput, @spread): EvidenceAdvance @create
+    updateEvidenceAdvance(input: editEvidenceAdvanceInput, @spread): EvidenceAdvance @update
+    deleteEvidenceAdvance(input: idEvidenceAdvanceInput!, @spread): EvidenceAdvance @delete
+}

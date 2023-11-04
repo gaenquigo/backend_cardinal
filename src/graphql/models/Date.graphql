@@ -1,0 +1,25 @@
+type Date {  
+   id :ID
+   start_date: String 
+   end_date:  String 
+   semester: String 
+}
+
+
+input registerDateInput {
+   id :ID
+   start_date: String 
+   end_date:  String 
+   semester: String 
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createDate(input: registerDateInput! @spread): Date! @create  
+     updateDate(input: registerDateInput! @spread): Date! @update
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+
+   dates : [Date!]! @all
+  
+}

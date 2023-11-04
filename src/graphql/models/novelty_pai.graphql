@@ -1,0 +1,59 @@
+type NoveltyPAI {
+  id: ID!
+  file: String
+  date: String!
+  agreement_number: String!
+  agreement: String!
+  pai_id: Int
+  pai: PAI! @belongsTo
+  group_id: Int
+  group: Group! @belongsTo
+  complete: Boolean
+}
+
+input registerNoveltyPAIInput {
+  file: String
+  date: String! @rules(apply: ["required", "Date"])
+  agreement_number: String! @rules(apply: ["required"])
+  agreement: String! @rules(apply: ["required"])
+  pai_id: Int
+  group_id: Int
+  complete: Boolean
+}
+
+input editNoveltyPAIInput {
+  id: ID! @eq @rules(apply: ["required", "exists:pais,id"])
+  file: String
+}
+
+input editDateNoveltyPAIInput {
+  id: ID! @eq @rules(apply: ["required", "exists:pais,id"])
+  date: String!
+}
+
+input editCompleteNoveltyPAIInput {
+  id: ID! @eq @rules(apply: ["required", "exists:pais,id"])
+  complete: Boolean
+}
+
+input idPAIINPUT {
+  pai_id: Int
+}
+
+input idPAIGroupInput {
+  pai_id: Int @where(pai_id: null)
+  group_id: Int @where(group_id: group_id)
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+  noveltiesByGroup(input: idPAIGroupInput @spread): [NoveltyPAI!]! @all
+  novelties_pai: [NoveltyPAI!]! @all
+  novelitisByPAI(pai_id: Int @where(pai_id: null)): [NoveltyPAI!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+  createNoveltyPAI(input: registerNoveltyPAIInput! @spread): NoveltyPAI! @create
+  updateNoveltyPAI(input: editNoveltyPAIInput! @spread): NoveltyPAI! @update
+  updateDateNoveltyPAI(input: editDateNoveltyPAIInput! @spread): NoveltyPAI! @update
+  updateNoveltyCompletePAI(input: editCompleteNoveltyPAIInput! @spread): NoveltyPAI! @update
+}

@@ -1,0 +1,53 @@
+type Rol_User{
+    id: ID!
+    Rol: Rol!
+    User: User!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+input createRolUserInput {
+    rol_id: Int! @rules(apply: ["required","exists:rols,id"])
+    user_id: Int! @rules(apply: ["required","exists:users,id"])
+}
+
+input editRolUserInput {
+    id: ID! @rules(apply: ["required"])
+    rol_id: Int @rules(apply: ["exists:rols,id"])
+    user_id: Int @rules(apply: ["exists:users,id"])
+}
+
+input idRolUserInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input idUserInput {
+    user_id: Int! @rules(apply: ["required","exists:users,id"])
+}
+
+input idUserInput2 {
+    user_id: Int! @rules(apply: ["required","exists:users,id"])
+}
+
+input createRolUserArrayInput {
+    user_id: Int! @rules(apply: ["required", "exists:users,id"])
+    rol_id: [Int]! @rules(apply: ["required", "exists:rols,id"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    Rol_User: [Rol_User!]! @all
+}
+
+type Rol_User_Without_Id {
+    User: User!
+    Rol: [Rol]!
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createRolUser(input: createRolUserInput @spread): Rol_User! @create
+    updateRolUser(input: editRolUserInput @spread): Rol_User! @update
+    deleteRolUser(input: idRolUserInput! @spread): Rol_User! @delete
+    crudArrayRolUser(input: createRolUserArrayInput @spread): Rol_User_Without_Id!
+  
+}
+

@@ -1,0 +1,41 @@
+type Payment {
+    id: ID!
+    value: Float!
+    payment: Boolean!
+    payment_date: String
+    evidence_id: ID!
+    evidence: [EvidenceAdvance] @belongsTo
+}
+
+input newPaymentInput {
+    value: Float! @rules(apply: ["required"])
+    payment: Boolean! @rules(apply: ["required"])
+    payment_date: String
+    evidence_id: ID! @rules(apply: ["required", "exists:evidence_advance,id"])
+}
+
+input editPaymentInput {
+    id: ID! @rules(apply: ["required", "exists:payments,id"])
+    value: Float
+    payment: Boolean
+    payment_date: String
+    evidence_id: ID @rules(apply: ["exists:evidence_advance,id"])
+}
+
+input idPaymentInput {
+    id: ID! @eq @rules(apply: ["required", "exists:payments,id"])
+}
+input idAllPaymentsInput {
+    id: [ID] @eq @rules(apply: ["required", "exists:payments,id"])
+}
+extend type Query @middleware(checks: ["auth:api"]) {
+    payments: [Payment!]! @all
+    paymentById(input: idPaymentInput @spread): Payment @find
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createPayment(input: newPaymentInput, @spread): Payment @create
+    updatePayment(input: editPaymentInput, @spread): Payment @update
+    deletePayment(input: idPaymentInput!, @spread): Payment @delete
+    deleteAllPayments(input: idAllPaymentsInput! @spread): [Payment]! @delete
+}

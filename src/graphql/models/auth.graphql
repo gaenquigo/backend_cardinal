@@ -1,0 +1,57 @@
+type Token {
+    access_token: String
+    type: String
+    expire_in: String
+}
+
+type TokenResponse {
+    message: String!
+    token: Token
+    user: User
+}
+
+input RegisterInput {
+    name: String! @rules(apply: ["required", "string"])
+    last_name: String! @rules(apply: ["required", "string"])
+    type_document: String! @rules(apply: ["required", "string"])
+    document: String! @rules(apply: ["required", "string", "unique:users,document"])
+    start_date: String! @rules(apply: ["required", "string", "date"])
+    end_date: String! @rules(apply: ["required", "string", "date"])
+    email: String! @rules(apply: ["required", "email", "unique:users,email"])
+    password: String! @rules(apply: ["required", "string"])
+    group_id:Int! @rules(apply: ["required", "exists:groups,id"])
+}
+
+type RegisterResponse {
+    message: String!
+    token: Token
+    user: User
+}
+
+type LogoutResponse {
+    status: String!
+    message: String!
+}
+
+extend type Query {
+    login(email: String!, password: String!): TokenResponse
+    logout: LogoutResponse
+}
+
+type ForgotPasswordResponse {
+    status: String!
+    message: String
+}
+
+input NewPasswordWithCodeInput {
+    email: String! @rules(apply: ["required", "email", "exists:users,email"])
+    token: String! @rules(apply: ["required", "string"])
+    password: String! @rules(apply: ["required", "confirmed", "min:8"])
+    password_confirmation: String!
+}
+
+extend type Mutation {
+    register(input: RegisterInput): RegisterResponse!
+    forgotPassword(email: String! @rules(apply: ["required", "email", "exists:users,email"])): ForgotPasswordResponse!
+    updateForgottenPassword(input: NewPasswordWithCodeInput @spread): ForgotPasswordResponse! @field(resolver: "App\\GraphQL\\Mutations\\ResetPassword@resolve")
+}

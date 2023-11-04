@@ -1,0 +1,14 @@
+type City {
+    id: ID!
+    name: String!
+    state_id: ID!
+    country_id: ID!
+    continent_id: ID!
+    state: State
+    country: Country
+    continent: Continent
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    city: [City!]! @all
+}

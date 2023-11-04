@@ -1,0 +1,50 @@
+type Domain {
+    id: ID!
+    domain: String
+    father_id: Int
+    name: String!
+    description: String
+    state: Boolean
+}
+
+input idDomainInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input idDomainState {
+    state: String @eq @rules(apply: ["required"])
+}
+
+input domainInput {
+    domain: String! @eq @rules(apply: ["required"])
+    state: Boolean @eq @rules(apply: ["required"])
+}
+
+input fatherIdInput {
+    father_id: Int! @eq @rules(apply: ["required"])
+    state: Boolean @eq @rules(apply: ["required"])
+}
+
+input RegisterDomainInput {
+    id: ID 
+    father_id :Int 
+    name : String !
+    description: String
+    state: Boolean
+    domain: String
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    domains: [Domain!]! @all
+    domainByState(input: idDomainState @spread):  [Domain!]! @all
+    domainById(input: idDomainInput @spread): Domain @find
+    domainByDomain(input: domainInput @spread): Domain @find
+    domainByFatherId(input: fatherIdInput @spread): [Domain] @all
+    domainFilterByDomain(input: domainInput @spread): [Domain] @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createDomain(input: RegisterDomainInput! @spread): Domain! @create
+    updateDomain(input: RegisterDomainInput! @spread): Domain! @update
+    deleteDomain(input: idDomainInput! @spread): Domain! @delete
+}

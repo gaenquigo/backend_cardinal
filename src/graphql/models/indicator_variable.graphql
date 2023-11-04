@@ -1,0 +1,49 @@
+type IndicatorVariable {
+    id: ID!
+    type_id: Int
+    type_variable_id: Int
+    indicator_id: Int
+    indicator_variable_id: Int
+    variable_id: Int
+    variable: Variable @hasOne
+    created_at: DateTime
+    updated_at: DateTime    
+}
+
+input createIndicatorVariableInput {
+    id: ID
+    type_id: Int
+    type_variable_id: Int
+    indicator_id: Int
+    indicator_variable_id: Int    
+    variable_id: Int
+}
+
+input updateIndicatorVariableInput {
+    id: ID!
+    type_id: Int
+    type_variable_id: Int
+    indicator_variable_id: Int
+    variable_id: Int
+}
+
+input deleteIndicatorVariableInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input deleteAllIndicatorVariableInput {
+    id: [ID] @eq @rules(apply: ["required"])
+}
+
+input idIndicatorInput {
+    indicator_id: Int @eq @rules(apply: ["required"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    IndicatorsVariable: [IndicatorVariable!]! @all
+    IndicatorsVariableByIdIndicator(input: idIndicatorInput @spread): [IndicatorVariable] @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteAllIndicatorVariableData(input: deleteAllIndicatorVariableInput! @spread): [IndicatorVariable]! @delete
+}

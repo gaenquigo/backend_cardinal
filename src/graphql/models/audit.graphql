@@ -1,0 +1,43 @@
+
+type Audit {
+    id: ID
+    user_type : String
+    user_id : Int
+    event : String
+    auditable_type: String
+    old_values: String
+    new_values:String
+    url:String
+    ip_address:String
+    user_agent:String
+    tags: String
+    created_at: DateTime!
+    updated_at: DateTime!
+    user:User! @belongsTo 
+}
+
+input DateRangeInput {
+  from: DateTime
+  to: DateTime
+   
+}
+
+input idAuditInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input inputEvent {
+    event: String! 
+}
+
+input inputIdUser {
+    user_id : Int
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+ audits: [Audit!]! @all
+ auditsByDate( created_at: DateRangeInput @whereBetween): [Audit] @all
+ auditsById(input: idAuditInput @spread): Audit @find
+ auditsByType(event:String @where(event: "created")): [Audit] @all
+ auditByUser(user_id : Int! @where(user_id: user_id)): [Audit!]! @all
+}

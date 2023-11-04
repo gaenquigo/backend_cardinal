@@ -1,0 +1,26 @@
+type IndicatorIediValue {
+    id: ID!
+    value: Float
+    year: Int!
+    p_a_i_id: Int!
+    id_iedi_variable: Int!
+    created_at: DateTime
+    updated_at: DateTime    
+}
+
+input createIndicatorIediValueInput {
+    value: Float
+    year: Int!
+    p_a_i_id: Int!
+    id_iedi_variable: Int!
+}
+
+input updateIndicatorIediValueInput {
+    id: ID! @eq @rules(apply: ["required"])
+    value: Float  
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createIndicatorIediValue(input: createIndicatorIediValueInput! @spread): IndicatorIediValue! @create
+    updateIndicatorIediValue(input: updateIndicatorIediValueInput! @spread): IndicatorIediValue! @update    
+}

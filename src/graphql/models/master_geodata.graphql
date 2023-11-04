@@ -1,0 +1,85 @@
+type Master_Geodata {
+    id: ID!
+    nombre_capa: String!
+    url: String!
+    url_metadata: String
+    descripcion: String
+    categoria: Int!
+    tipo: Int!
+    capa_wms: String
+    posicion: Int!
+    propietario: Int!
+    frecuencia_actualizacion: Int!
+    es_visible: Boolean
+    es_deprecada: Boolean
+    anio:Int
+    categoria_capa: Domain @hasOne
+    tipo_capa: Domain @hasOne
+    frecuenciaActualizacion: Domain @hasOne
+    campos_geodata: [Campo_Geodata] @hasMany
+}
+
+input CreateMasterGeodataInput {
+    nombre_capa: String! @rules(apply: ["required"])
+    url: String! @rules(apply: ["required"])
+    url_metadata: String
+    descripcion: String
+    categoria: Int! @rules(apply: ["required"])
+    tipo: Int! @rules(apply: ["required"])
+    capa_wms: String
+    posicion: Int! @rules(apply: ["required"])
+    propietario: Int! @rules(apply: ["required"])
+    frecuencia_actualizacion: Int! @rules(apply: ["required"])
+    es_visible: Boolean
+    es_deprecada: Boolean
+    anio:Int
+    campos_geodata: createCamposHasMany
+}
+
+input UpdateMasterGeodataInput {
+    id: ID! @eq @rules(apply: ["required"])
+    nombre_capa: String! @rules(apply: ["required"])
+    url: String! @rules(apply: ["required"])
+    url_metadata: String
+    descripcion: String
+    categoria: Int! @rules(apply: ["required"])
+    tipo: Int! @rules(apply: ["required"])
+    capa_wms: String
+    posicion: Int! @rules(apply: ["required"])
+    propietario: Int! @rules(apply: ["required"])
+    frecuencia_actualizacion: Int! @rules(apply: ["required"])
+    es_visible: Boolean
+    es_deprecada: Boolean
+    anio:Int
+    campos_geodata: createCamposHasMany
+}
+
+input DeleteMasterGeodataInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input createCamposHasMany {
+    create: [CreateCampoGeodataInput]
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    masterGeodata(orderBy: [OrderByClause!] @orderBy): [Master_Geodata] @all
+    masterGeodataByCategoria(categoria: Int! @eq @rules(apply: ["required"])): [Master_Geodata] @all
+    masterGeodataById(id: ID! @eq @rules(apply: ["required"])): Master_Geodata @find
+}
+
+input OrderByClause{
+    field: String!
+    order: SortOrder!
+}
+
+enum SortOrder {
+    ASC
+    DESC
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createMasterGeodata(input: CreateMasterGeodataInput! @spread): Master_Geodata! @create
+    updateMasterGeodata(input: UpdateMasterGeodataInput! @spread): Master_Geodata! @update
+    deleteMasterGeodata(input: DeleteMasterGeodataInput! @spread): Master_Geodata! @delete
+}

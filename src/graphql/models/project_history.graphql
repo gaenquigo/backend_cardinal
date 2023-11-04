@@ -1,0 +1,23 @@
+type ProjectHistory {
+    id: ID
+    history: String
+    program_history_id: ID
+    parent_id: ID
+    programHistory: ProgramHistory @belongsTo
+    parent: Program @belongsTo
+    objectivesHistory: [ObjectiveHistory] @hasMany
+}
+
+input registerProjectHistoryInput {
+    history: String! @rules(apply: ["required", "string"])
+    program_history_id: ID! @rules(apply: ["required", "exists:programs_history,id"])
+    parent_id: ID! @rules(apply: ["required", "exists:projects,id"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    projectsHistory: [ProjectHistory!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createProjectHistory(input: registerProjectHistoryInput! @spread): ProjectHistory! @create
+}

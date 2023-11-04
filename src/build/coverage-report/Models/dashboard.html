@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/app/Models</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../_css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../_css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="../_css/style.css" rel="stylesheet" type="text/css">
+  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+ </head>
+ <body>
+  <header>
+   <div class="container-fluid">
+    <div class="row">
+     <div class="col-md-12">
+      <nav aria-label="breadcrumb">
+       <ol class="breadcrumb">
+         <li class="breadcrumb-item"><a href="../index.html">/var/www/app</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Models</a></li>
+         <li class="breadcrumb-item active">(Dashboard)</li>
+
+       </ol>
+      </nav>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container-fluid">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Activity.php.html#13">App\Models\Activity</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Payment.php.html#12">App\Models\Payment</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="InformesFca.php.html#8">App\Models\InformesFca</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Master_Geodata.php.html#9">App\Models\Master_Geodata</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NoveltyPAI.php.html#12">App\Models\NoveltyPAI</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Objective.php.html#12">App\Models\Objective</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ObjectiveHistory.php.html#11">App\Models\ObjectiveHistory</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ObjectiveProduct.php.html#12">App\Models\ObjectiveProduct</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ObjectiveProductHistory.php.html#11">App\Models\ObjectiveProductHistory</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OtherDataYear.php.html#10">App\Models\OtherDataYear</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Other_data.php.html#11">App\Models\Other_data</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PAI.php.html#13">App\Models\PAI</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PAIHistory.php.html#11">App\Models\PAIHistory</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Permission.php.html#8">App\Models\Permission</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="IndicatorVariable.php.html#10">App\Models\IndicatorVariable</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Permission_Rol.php.html#11">App\Models\Permission_Rol</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Phase.php.html#10">App\Models\Phase</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Program.php.html#12">App\Models\Program</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProgramHistory.php.html#7">App\Models\ProgramHistory</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Project.php.html#12">App\Models\Project</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProjectHistory.php.html#11">App\Models\ProjectHistory</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rol_User.php.html#7">App\Models\Rol_User</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="State.php.html#7">App\Models\State</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="StrategicLine.php.html#12">App\Models\StrategicLine</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="StrategicLineHistory.php.html#11">App\Models\StrategicLineHistory</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Suggestion.php.html#11">App\Suggestion</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ActivityHistory.php.html#11">App\Models\ActivityHistory</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator_activity.php.html#10">App\Models\Indicator_activity</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="IndicatorIediVariable.php.html#10">App\Models\IndicatorIediVariable</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EvidenceFinancial.php.html#12">App\Models\EvidenceFinancial</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ActivitySource.php.html#14">App\Models\ActivitySource</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ActivitySourceHistory.php.html#11">App\Models\ActivitySourceHistory</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ApprovePAI.php.html#12">App\Models\ApprovePAI</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Audit.php.html#7">App\Models\Audit</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Campo_Geodata.php.html#9">App\Models\Campo_Geodata</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="City.php.html#7">App\Models\City</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Continent.php.html#7">App\Models\Continent</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Cost_Source.php.html#8">App\Models\Cost_Source</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Country.php.html#7">App\Models\Country</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Domain.php.html#8">App\Models\Domain</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="IndicatorIediValue.php.html#10">App\Models\IndicatorIediValue</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EvidenceAdvance.php.html#13">App\Models\EvidenceAdvance</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="File.php.html#13">App\Models\File</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_Plan.php.html#12">App\Models\Financial_Plan</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_Plan_History.php.html#7">App\Models\Financial_Plan_History</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_cost.php.html#7">App\Models\Financial_cost</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_cost_history.php.html#8">App\Models\Financial_cost_history</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financing_Source.php.html#8">App\Models\Financing_Source</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Fundraising.php.html#13">App\Models\Fundraising</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#12">App\Models\Group</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Historical_Pais.php.html#13">App\Models\Historical_Pais</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicador_Geodata.php.html#9">App\Models\Indicador_Geodata</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="IndicatorAccount.php.html#10">App\Models\IndicatorAccount</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="approvalReport.php.html#9">App\Models\ApprovalReport</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator.php.html#13">App\Models\Indicator</a></td><td class="text-right">9%</td></tr>
+       <tr><td><a href="Variable.php.html#13">App\Models\Variable</a></td><td class="text-right">33%</td></tr>
+       <tr><td><a href="User.php.html#18">App\Models\User</a></td><td class="text-right">41%</td></tr>
+       <tr><td><a href="Rol.php.html#8">App\Models\Rol</a></td><td class="text-right">50%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Activity.php.html#65"><abbr title="App\Models\Activity::objective">objective</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Other_data.php.html#27"><abbr title="App\Models\Other_data::typeOtherDataDomain">typeOtherDataDomain</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ObjectiveHistory.php.html#47"><abbr title="App\Models\ObjectiveHistory::objectiveProductsHistory">objectiveProductsHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ObjectiveHistory.php.html#55"><abbr title="App\Models\ObjectiveHistory::activitiesHistory">activitiesHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ObjectiveProduct.php.html#68"><abbr title="App\Models\ObjectiveProduct::product">product</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ObjectiveProductHistory.php.html#31"><abbr title="App\Models\ObjectiveProductHistory::objectiveHistory">objectiveHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ObjectiveProductHistory.php.html#39"><abbr title="App\Models\ObjectiveProductHistory::parent">parent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="OtherDataYear.php.html#23"><abbr title="App\Models\OtherDataYear::otherData">otherData</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Other_data.php.html#22"><abbr title="App\Models\Other_data::indicator">indicator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PAI.php.html#57"><abbr title="App\Models\PAI::group">group</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ObjectiveHistory.php.html#31"><abbr title="App\Models\ObjectiveHistory::projectHistory">projectHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PAI.php.html#65"><abbr title="App\Models\PAI::strategicLines">strategicLines</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PAI.php.html#73"><abbr title="App\Models\PAI::versions">versions</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PAI.php.html#78"><abbr title="App\Models\PAI::financial_plans">financial_plans</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PAI.php.html#83"><abbr title="App\Models\PAI::financial_costs">financial_costs</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PAI.php.html#88"><abbr title="App\Models\PAI::Suggestion">Suggestion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PAI.php.html#93"><abbr title="App\Models\PAI::reportFCA">reportFCA</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PAI.php.html#98"><abbr title="App\Models\PAI::indicatorIediValue">indicatorIediValue</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ObjectiveHistory.php.html#39"><abbr title="App\Models\ObjectiveHistory::parent">parent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Objective.php.html#56"><abbr title="App\Models\Objective::objectiveProducts">objectiveProducts</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PAIHistory.php.html#39"><abbr title="App\Models\PAIHistory::strategicLinesHistory">strategicLinesHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="InformesFca.php.html#43"><abbr title="App\Models\InformesFca::pai">pai</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="IndicatorVariable.php.html#22"><abbr title="App\Models\IndicatorVariable::indicator">indicator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="IndicatorVariable.php.html#27"><abbr title="App\Models\IndicatorVariable::variable">variable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator_activity.php.html#30"><abbr title="App\Models\Indicator_activity::activities">activities</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator_activity.php.html#35"><abbr title="App\Models\Indicator_activity::evidences">evidences</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator_activity.php.html#40"><abbr title="App\Models\Indicator_activity::variableIn">variableIn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator_activity.php.html#45"><abbr title="App\Models\Indicator_activity::variable">variable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator_activity.php.html#50"><abbr title="App\Models\Indicator_activity::indicator">indicator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="InformesFca.php.html#48"><abbr title="App\Models\InformesFca::group">group</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Objective.php.html#48"><abbr title="App\Models\Objective::activities">activities</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Master_Geodata.php.html#31"><abbr title="App\Models\Master_Geodata::categoria_capa">categoria_capa</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Master_Geodata.php.html#36"><abbr title="App\Models\Master_Geodata::tipo_capa">tipo_capa</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Master_Geodata.php.html#41"><abbr title="App\Models\Master_Geodata::frecuenciaActualizacion">frecuenciaActualizacion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Master_Geodata.php.html#46"><abbr title="App\Models\Master_Geodata::campos_geodata">campos_geodata</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NoveltyPAI.php.html#48"><abbr title="App\Models\NoveltyPAI::pai">pai</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="NoveltyPAI.php.html#53"><abbr title="App\Models\NoveltyPAI::group">group</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Objective.php.html#40"><abbr title="App\Models\Objective::project">project</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="PAIHistory.php.html#31"><abbr title="App\Models\PAIHistory::parent">parent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Payment.php.html#45"><abbr title="App\Models\Payment::evidence">evidence</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Activity.php.html#73"><abbr title="App\Models\Activity::activity_sources">activity_sources</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#84"><abbr title="App\Models\User::rols">rols</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="StrategicLineHistory.php.html#32"><abbr title="App\Models\StrategicLineHistory::paiHistory">paiHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="StrategicLineHistory.php.html#40"><abbr title="App\Models\StrategicLineHistory::parent">parent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="StrategicLineHistory.php.html#48"><abbr title="App\Models\StrategicLineHistory::programsHistory">programsHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Suggestion.php.html#27"><abbr title="App\Suggestion::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Suggestion.php.html#33"><abbr title="App\Suggestion::pais">pais</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Suggestion.php.html#37"><abbr title="App\Suggestion::group">group</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Suggestion.php.html#42"><abbr title="App\Suggestion::domain">domain</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#92"><abbr title="App\Models\User::group">group</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="StrategicLine.php.html#47"><abbr title="App\Models\StrategicLine::pai">pai</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#100"><abbr title="App\Models\User::sendPasswordResetNotification">sendPasswordResetNotification</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#121"><abbr title="App\Models\User::rolUser">rolUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Variable.php.html#35"><abbr title="App\Models\Variable::indicator">indicator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Variable.php.html#40"><abbr title="App\Models\Variable::numeratorIn">numeratorIn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Variable.php.html#45"><abbr title="App\Models\Variable::denominatorIn">denominatorIn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Variable.php.html#50"><abbr title="App\Models\Variable::weighingIn">weighingIn</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="approvalReport.php.html#39"><abbr title="App\Models\ApprovalReport::pai">pai</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="StrategicLine.php.html#55"><abbr title="App\Models\StrategicLine::programs">programs</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="State.php.html#21"><abbr title="App\Models\State::City">City</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Permission.php.html#34"><abbr title="App\Models\Permission::rols">rols</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProgramHistory.php.html#40"><abbr title="App\Models\ProgramHistory::projectsHistory">projectsHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Permission_Rol.php.html#37"><abbr title="App\Models\Permission_Rol::permission">permission</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Permission_Rol.php.html#44"><abbr title="App\Models\Permission_Rol::rol">rol</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Phase.php.html#23"><abbr title="App\Models\Phase::variable">variable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Program.php.html#47"><abbr title="App\Models\Program::strategicLine">strategicLine</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Program.php.html#63"><abbr title="App\Models\Program::projects">projects</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProgramHistory.php.html#27"><abbr title="App\Models\ProgramHistory::strategicLineHistory">strategicLineHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProgramHistory.php.html#35"><abbr title="App\Models\ProgramHistory::parent">parent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Project.php.html#41"><abbr title="App\Models\Project::program">program</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="State.php.html#16"><abbr title="App\Models\State::Country">Country</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Project.php.html#46"><abbr title="App\Models\Project::objectives">objectives</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProjectHistory.php.html#31"><abbr title="App\Models\ProjectHistory::programHistory">programHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProjectHistory.php.html#39"><abbr title="App\Models\ProjectHistory::parent">parent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ProjectHistory.php.html#47"><abbr title="App\Models\ProjectHistory::objectivesHistory">objectivesHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rol.php.html#39"><abbr title="App\Models\Rol::users">users</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rol_User.php.html#16"><abbr title="App\Models\Rol_User::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Rol_User.php.html#21"><abbr title="App\Models\Rol_User::rol">rol</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="IndicatorIediVariable.php.html#21"><abbr title="App\Models\IndicatorIediVariable::indicator">indicator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="IndicatorIediValue.php.html#23"><abbr title="App\Models\IndicatorIediValue::pai">pai</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="IndicatorAccount.php.html#26"><abbr title="App\Models\IndicatorAccount::indicator">indicator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Country.php.html#22"><abbr title="App\Models\Country::State">State</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="City.php.html#26"><abbr title="App\Models\City::Country">Country</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="City.php.html#30"><abbr title="App\Models\City::Continent">Continent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="City.php.html#34"><abbr title="App\Models\City::Group">Group</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Continent.php.html#17"><abbr title="App\Models\Continent::Country">Country</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Cost_Source.php.html#27"><abbr title="App\Models\Cost_Source::cost_sources">cost_sources</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Cost_Source.php.html#31"><abbr title="App\Models\Cost_Source::financial_costs">financial_costs</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Country.php.html#17"><abbr title="App\Models\Country::Continent">Continent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Domain.php.html#18"><abbr title="App\Models\Domain::financingSources">financingSources</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Campo_Geodata.php.html#21"><abbr title="App\Models\Campo_Geodata::master_geodata">master_geodata</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EvidenceAdvance.php.html#65"><abbr title="App\Models\EvidenceAdvance::activity">activity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EvidenceAdvance.php.html#74"><abbr title="App\Models\EvidenceAdvance::evidence">evidence</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EvidenceAdvance.php.html#82"><abbr title="App\Models\EvidenceAdvance::advances">advances</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EvidenceAdvance.php.html#90"><abbr title="App\Models\EvidenceAdvance::evidenceFinancial">evidenceFinancial</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EvidenceAdvance.php.html#98"><abbr title="App\Models\EvidenceAdvance::payments">payments</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EvidenceAdvance.php.html#103"><abbr title="App\Models\EvidenceAdvance::indicator_activities">indicator_activities</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EvidenceAdvance.php.html#108"><abbr title="App\Models\EvidenceAdvance::otherDataYear">otherDataYear</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="City.php.html#22"><abbr title="App\Models\City::State">State</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Audit.php.html#25"><abbr title="App\Models\Audit::user">user</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="IndicatorAccount.php.html#21"><abbr title="App\Models\IndicatorAccount::financing_source">financing_source</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Activity.php.html#141"><abbr title="App\Models\Activity::variable">variable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Activity.php.html#81"><abbr title="App\Models\Activity::evidences_advances">evidences_advances</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Activity.php.html#89"><abbr title="App\Models\Activity::indicator_activities">indicator_activities</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Activity.php.html#97"><abbr title="App\Models\Activity::otherDataYear">otherDataYear</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Activity.php.html#105"><abbr title="App\Models\Activity::ocdeCategory">ocdeCategory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Activity.php.html#113"><abbr title="App\Models\Activity::ocdeIndicator">ocdeIndicator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Activity.php.html#121"><abbr title="App\Models\Activity::product">product</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Activity.php.html#131"><abbr title="App\Models\Activity::indicator">indicator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ActivityHistory.php.html#31"><abbr title="App\Models\ActivityHistory::objectiveHistory">objectiveHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ApprovePAI.php.html#44"><abbr title="App\Models\ApprovePAI::pai">pai</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ActivityHistory.php.html#39"><abbr title="App\Models\ActivityHistory::parent">parent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ActivityHistory.php.html#47"><abbr title="App\Models\ActivityHistory::activitySourcesHistory">activitySourcesHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ActivitySource.php.html#46"><abbr title="App\Models\ActivitySource::activity">activity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ActivitySource.php.html#54"><abbr title="App\Models\ActivitySource::financial_plan">financial_plan</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ActivitySource.php.html#59"><abbr title="App\Models\ActivitySource::financial_costs">financial_costs</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ActivitySourceHistory.php.html#31"><abbr title="App\Models\ActivitySourceHistory::activityHistory">activityHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="ActivitySourceHistory.php.html#39"><abbr title="App\Models\ActivitySourceHistory::parent">parent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EvidenceFinancial.php.html#44"><abbr title="App\Models\EvidenceFinancial::activitySource">activitySource</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="EvidenceFinancial.php.html#52"><abbr title="App\Models\EvidenceFinancial::evidence">evidence</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="File.php.html#63"><abbr title="App\Models\File::approvePAI">approvePAI</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator.php.html#42"><abbr title="App\Models\Indicator::typeIndicatorDomain">typeIndicatorDomain</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#56"><abbr title="App\Models\Group::city">city</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#61"><abbr title="App\Models\Group::Suggestion">Suggestion</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#66"><abbr title="App\Models\Group::ReportFCA">ReportFCA</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Historical_Pais.php.html#35"><abbr title="App\Models\Historical_Pais::group">group</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicador_Geodata.php.html#20"><abbr title="App\Models\Indicador_Geodata::variables">variables</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicador_Geodata.php.html#25"><abbr title="App\Models\Indicador_Geodata::master_geodata">master_geodata</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator.php.html#37"><abbr title="App\Models\Indicator::indicator_activities">indicator_activities</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator.php.html#47"><abbr title="App\Models\Indicator::calculeTypeDomain">calculeTypeDomain</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="File.php.html#68"><abbr title="App\Models\File::indicator">indicator</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator.php.html#52"><abbr title="App\Models\Indicator::categoryTypeDomain">categoryTypeDomain</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator.php.html#57"><abbr title="App\Models\Indicator::otherData">otherData</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator.php.html#67"><abbr title="App\Models\Indicator::indicatorVariable">indicatorVariable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator.php.html#72"><abbr title="App\Models\Indicator::indicatorAccount">indicatorAccount</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator.php.html#77"><abbr title="App\Models\Indicator::indicatorIediVariable">indicatorIediVariable</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator.php.html#82"><abbr title="App\Models\Indicator::files">files</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Indicator.php.html#87"><abbr title="App\Models\Indicator::units">units</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Fundraising.php.html#43"><abbr title="App\Models\Fundraising::Financial_Plan">Financial_Plan</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Fundraising.php.html#38"><abbr title="App\Models\Fundraising::implementation">implementation</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financing_Source.php.html#39"><abbr title="App\Models\Financing_Source::financial_plan">financial_plan</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financing_Source.php.html#34"><abbr title="App\Models\Financing_Source::financing_sources">financing_sources</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="File.php.html#73"><abbr title="App\Models\File::novelety">novelety</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="File.php.html#78"><abbr title="App\Models\File::approveReports">approveReports</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="File.php.html#83"><abbr title="App\Models\File::historicalReports">historicalReports</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="File.php.html#88"><abbr title="App\Models\File::reportsFCA">reportsFCA</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_Plan.php.html#38"><abbr title="App\Models\Financial_Plan::financing_Source">financing_Source</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_Plan.php.html#43"><abbr title="App\Models\Financial_Plan::fundraising">fundraising</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_Plan.php.html#47"><abbr title="App\Models\Financial_Plan::pai">pai</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_Plan.php.html#52"><abbr title="App\Models\Financial_Plan::activity_source">activity_source</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_Plan_History.php.html#18"><abbr title="App\Models\Financial_Plan_History::paiHistory">paiHistory</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_Plan_History.php.html#23"><abbr title="App\Models\Financial_Plan_History::parent">parent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_cost.php.html#33"><abbr title="App\Models\Financial_cost::cost_sources">cost_sources</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_cost.php.html#39"><abbr title="App\Models\Financial_cost::pais">pais</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_cost.php.html#44"><abbr title="App\Models\Financial_cost::group">group</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_cost_history.php.html#31"><abbr title="App\Models\Financial_cost_history::financing_cost">financing_cost</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financial_cost_history.php.html#36"><abbr title="App\Models\Financial_cost_history::novelity">novelity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Financing_Source.php.html#29"><abbr title="App\Models\Financing_Source::domains">domains</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="approvalReport.php.html#45"><abbr title="App\Models\ApprovalReport::group">group</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="User.php.html#127"><abbr title="App\Models\User::boot">boot</abbr></a></td><td class="text-right">60%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 7.0.10</a> using <a href="https://secure.php.net/" target="_top">PHP 7.4.3</a> with <a href="https://xdebug.org/">Xdebug 2.9.2</a> and <a href="https://phpunit.de/">PHPUnit 8.5.8</a> at Wed Apr 14 12:18:36 -05 2021.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../_js/jquery.min.js" type="text/javascript"></script>
+  <script src="../_js/d3.min.js" type="text/javascript"></script>
+  <script src="../_js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([54,1,0,0,1,1,1,0,0,0,0,3], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([159,0,0,0,0,0,0,1,0,0,0,7], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,10,"<a href=\"Activity.php.html#13\">App\\Models\\Activity<\/a>"],[0,3,"<a href=\"ActivityHistory.php.html#11\">App\\Models\\ActivityHistory<\/a>"],[0,3,"<a href=\"ActivitySource.php.html#14\">App\\Models\\ActivitySource<\/a>"],[0,2,"<a href=\"ActivitySourceHistory.php.html#11\">App\\Models\\ActivitySourceHistory<\/a>"],[0,1,"<a href=\"ApprovePAI.php.html#12\">App\\Models\\ApprovePAI<\/a>"],[0,1,"<a href=\"Audit.php.html#7\">App\\Models\\Audit<\/a>"],[0,1,"<a href=\"Campo_Geodata.php.html#9\">App\\Models\\Campo_Geodata<\/a>"],[0,4,"<a href=\"City.php.html#7\">App\\Models\\City<\/a>"],[0,1,"<a href=\"Continent.php.html#7\">App\\Models\\Continent<\/a>"],[0,2,"<a href=\"Cost_Source.php.html#8\">App\\Models\\Cost_Source<\/a>"],[0,2,"<a href=\"Country.php.html#7\">App\\Models\\Country<\/a>"],[100,0,"<a href=\"Data_Geodata.php.html#8\">App\\Models\\Data_Geodata<\/a>"],[100,0,"<a href=\"Date.php.html#8\">App\\Models\\Date<\/a>"],[0,1,"<a href=\"Domain.php.html#8\">App\\Models\\Domain<\/a>"],[0,7,"<a href=\"EvidenceAdvance.php.html#13\">App\\Models\\EvidenceAdvance<\/a>"],[0,2,"<a href=\"EvidenceFinancial.php.html#12\">App\\Models\\EvidenceFinancial<\/a>"],[0,6,"<a href=\"File.php.html#13\">App\\Models\\File<\/a>"],[0,4,"<a href=\"Financial_Plan.php.html#12\">App\\Models\\Financial_Plan<\/a>"],[0,2,"<a href=\"Financial_Plan_History.php.html#7\">App\\Models\\Financial_Plan_History<\/a>"],[0,3,"<a href=\"Financial_cost.php.html#7\">App\\Models\\Financial_cost<\/a>"],[0,2,"<a href=\"Financial_cost_history.php.html#8\">App\\Models\\Financial_cost_history<\/a>"],[0,3,"<a href=\"Financing_Source.php.html#8\">App\\Models\\Financing_Source<\/a>"],[0,2,"<a href=\"Fundraising.php.html#13\">App\\Models\\Fundraising<\/a>"],[0,3,"<a href=\"Group.php.html#12\">App\\Models\\Group<\/a>"],[0,1,"<a href=\"Historical_Pais.php.html#13\">App\\Models\\Historical_Pais<\/a>"],[100,1,"<a href=\"Implementation.php.html#14\">App\\Models\\Implementation<\/a>"],[0,2,"<a href=\"Indicador_Geodata.php.html#9\">App\\Models\\Indicador_Geodata<\/a>"],[9.090909090909092,11,"<a href=\"Indicator.php.html#13\">App\\Models\\Indicator<\/a>"],[0,2,"<a href=\"IndicatorAccount.php.html#10\">App\\Models\\IndicatorAccount<\/a>"],[0,1,"<a href=\"IndicatorIediValue.php.html#10\">App\\Models\\IndicatorIediValue<\/a>"],[0,1,"<a href=\"IndicatorIediVariable.php.html#10\">App\\Models\\IndicatorIediVariable<\/a>"],[0,2,"<a href=\"IndicatorVariable.php.html#10\">App\\Models\\IndicatorVariable<\/a>"],[0,5,"<a href=\"Indicator_activity.php.html#10\">App\\Models\\Indicator_activity<\/a>"],[0,2,"<a href=\"InformesFca.php.html#8\">App\\Models\\InformesFca<\/a>"],[0,4,"<a href=\"Master_Geodata.php.html#9\">App\\Models\\Master_Geodata<\/a>"],[0,2,"<a href=\"NoveltyPAI.php.html#12\">App\\Models\\NoveltyPAI<\/a>"],[0,3,"<a href=\"Objective.php.html#12\">App\\Models\\Objective<\/a>"],[0,4,"<a href=\"ObjectiveHistory.php.html#11\">App\\Models\\ObjectiveHistory<\/a>"],[0,1,"<a href=\"ObjectiveProduct.php.html#12\">App\\Models\\ObjectiveProduct<\/a>"],[0,2,"<a href=\"ObjectiveProductHistory.php.html#11\">App\\Models\\ObjectiveProductHistory<\/a>"],[0,1,"<a href=\"OtherDataYear.php.html#10\">App\\Models\\OtherDataYear<\/a>"],[0,2,"<a href=\"Other_data.php.html#11\">App\\Models\\Other_data<\/a>"],[0,8,"<a href=\"PAI.php.html#13\">App\\Models\\PAI<\/a>"],[0,2,"<a href=\"PAIHistory.php.html#11\">App\\Models\\PAIHistory<\/a>"],[0,1,"<a href=\"Payment.php.html#12\">App\\Models\\Payment<\/a>"],[0,1,"<a href=\"Permission.php.html#8\">App\\Models\\Permission<\/a>"],[0,2,"<a href=\"Permission_Rol.php.html#11\">App\\Models\\Permission_Rol<\/a>"],[0,1,"<a href=\"Phase.php.html#10\">App\\Models\\Phase<\/a>"],[0,2,"<a href=\"Program.php.html#12\">App\\Models\\Program<\/a>"],[0,3,"<a href=\"ProgramHistory.php.html#7\">App\\Models\\ProgramHistory<\/a>"],[0,2,"<a href=\"Project.php.html#12\">App\\Models\\Project<\/a>"],[0,3,"<a href=\"ProjectHistory.php.html#11\">App\\Models\\ProjectHistory<\/a>"],[50,2,"<a href=\"Rol.php.html#8\">App\\Models\\Rol<\/a>"],[0,2,"<a href=\"Rol_User.php.html#7\">App\\Models\\Rol_User<\/a>"],[0,2,"<a href=\"State.php.html#7\">App\\Models\\State<\/a>"],[0,2,"<a href=\"StrategicLine.php.html#12\">App\\Models\\StrategicLine<\/a>"],[0,3,"<a href=\"StrategicLineHistory.php.html#11\">App\\Models\\StrategicLineHistory<\/a>"],[0,4,"<a href=\"Suggestion.php.html#11\">App\\Suggestion<\/a>"],[41.66666666666667,7,"<a href=\"User.php.html#18\">App\\Models\\User<\/a>"],[33.33333333333333,6,"<a href=\"Variable.php.html#13\">App\\Models\\Variable<\/a>"],[0,2,"<a href=\"approvalReport.php.html#9\">App\\Models\\ApprovalReport<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,1,"<a href=\"Activity.php.html#65\">App\\Models\\Activity::objective<\/a>"],[0,1,"<a href=\"Activity.php.html#73\">App\\Models\\Activity::activity_sources<\/a>"],[0,1,"<a href=\"Activity.php.html#81\">App\\Models\\Activity::evidences_advances<\/a>"],[0,1,"<a href=\"Activity.php.html#89\">App\\Models\\Activity::indicator_activities<\/a>"],[0,1,"<a href=\"Activity.php.html#97\">App\\Models\\Activity::otherDataYear<\/a>"],[0,1,"<a href=\"Activity.php.html#105\">App\\Models\\Activity::ocdeCategory<\/a>"],[0,1,"<a href=\"Activity.php.html#113\">App\\Models\\Activity::ocdeIndicator<\/a>"],[0,1,"<a href=\"Activity.php.html#121\">App\\Models\\Activity::product<\/a>"],[0,1,"<a href=\"Activity.php.html#131\">App\\Models\\Activity::indicator<\/a>"],[0,1,"<a href=\"Activity.php.html#141\">App\\Models\\Activity::variable<\/a>"],[0,1,"<a href=\"ActivityHistory.php.html#31\">App\\Models\\ActivityHistory::objectiveHistory<\/a>"],[0,1,"<a href=\"ActivityHistory.php.html#39\">App\\Models\\ActivityHistory::parent<\/a>"],[0,1,"<a href=\"ActivityHistory.php.html#47\">App\\Models\\ActivityHistory::activitySourcesHistory<\/a>"],[0,1,"<a href=\"ActivitySource.php.html#46\">App\\Models\\ActivitySource::activity<\/a>"],[0,1,"<a href=\"ActivitySource.php.html#54\">App\\Models\\ActivitySource::financial_plan<\/a>"],[0,1,"<a href=\"ActivitySource.php.html#59\">App\\Models\\ActivitySource::financial_costs<\/a>"],[0,1,"<a href=\"ActivitySourceHistory.php.html#31\">App\\Models\\ActivitySourceHistory::activityHistory<\/a>"],[0,1,"<a href=\"ActivitySourceHistory.php.html#39\">App\\Models\\ActivitySourceHistory::parent<\/a>"],[0,1,"<a href=\"ApprovePAI.php.html#44\">App\\Models\\ApprovePAI::pai<\/a>"],[0,1,"<a href=\"Audit.php.html#25\">App\\Models\\Audit::user<\/a>"],[0,1,"<a href=\"Campo_Geodata.php.html#21\">App\\Models\\Campo_Geodata::master_geodata<\/a>"],[0,1,"<a href=\"City.php.html#22\">App\\Models\\City::State<\/a>"],[0,1,"<a href=\"City.php.html#26\">App\\Models\\City::Country<\/a>"],[0,1,"<a href=\"City.php.html#30\">App\\Models\\City::Continent<\/a>"],[0,1,"<a href=\"City.php.html#34\">App\\Models\\City::Group<\/a>"],[0,1,"<a href=\"Continent.php.html#17\">App\\Models\\Continent::Country<\/a>"],[0,1,"<a href=\"Cost_Source.php.html#27\">App\\Models\\Cost_Source::cost_sources<\/a>"],[0,1,"<a href=\"Cost_Source.php.html#31\">App\\Models\\Cost_Source::financial_costs<\/a>"],[0,1,"<a href=\"Country.php.html#17\">App\\Models\\Country::Continent<\/a>"],[0,1,"<a href=\"Country.php.html#22\">App\\Models\\Country::State<\/a>"],[0,1,"<a href=\"Domain.php.html#18\">App\\Models\\Domain::financingSources<\/a>"],[0,1,"<a href=\"EvidenceAdvance.php.html#65\">App\\Models\\EvidenceAdvance::activity<\/a>"],[0,1,"<a href=\"EvidenceAdvance.php.html#74\">App\\Models\\EvidenceAdvance::evidence<\/a>"],[0,1,"<a href=\"EvidenceAdvance.php.html#82\">App\\Models\\EvidenceAdvance::advances<\/a>"],[0,1,"<a href=\"EvidenceAdvance.php.html#90\">App\\Models\\EvidenceAdvance::evidenceFinancial<\/a>"],[0,1,"<a href=\"EvidenceAdvance.php.html#98\">App\\Models\\EvidenceAdvance::payments<\/a>"],[0,1,"<a href=\"EvidenceAdvance.php.html#103\">App\\Models\\EvidenceAdvance::indicator_activities<\/a>"],[0,1,"<a href=\"EvidenceAdvance.php.html#108\">App\\Models\\EvidenceAdvance::otherDataYear<\/a>"],[0,1,"<a href=\"EvidenceFinancial.php.html#44\">App\\Models\\EvidenceFinancial::activitySource<\/a>"],[0,1,"<a href=\"EvidenceFinancial.php.html#52\">App\\Models\\EvidenceFinancial::evidence<\/a>"],[0,1,"<a href=\"File.php.html#63\">App\\Models\\File::approvePAI<\/a>"],[0,1,"<a href=\"File.php.html#68\">App\\Models\\File::indicator<\/a>"],[0,1,"<a href=\"File.php.html#73\">App\\Models\\File::novelety<\/a>"],[0,1,"<a href=\"File.php.html#78\">App\\Models\\File::approveReports<\/a>"],[0,1,"<a href=\"File.php.html#83\">App\\Models\\File::historicalReports<\/a>"],[0,1,"<a href=\"File.php.html#88\">App\\Models\\File::reportsFCA<\/a>"],[0,1,"<a href=\"Financial_Plan.php.html#38\">App\\Models\\Financial_Plan::financing_Source<\/a>"],[0,1,"<a href=\"Financial_Plan.php.html#43\">App\\Models\\Financial_Plan::fundraising<\/a>"],[0,1,"<a href=\"Financial_Plan.php.html#47\">App\\Models\\Financial_Plan::pai<\/a>"],[0,1,"<a href=\"Financial_Plan.php.html#52\">App\\Models\\Financial_Plan::activity_source<\/a>"],[0,1,"<a href=\"Financial_Plan_History.php.html#18\">App\\Models\\Financial_Plan_History::paiHistory<\/a>"],[0,1,"<a href=\"Financial_Plan_History.php.html#23\">App\\Models\\Financial_Plan_History::parent<\/a>"],[0,1,"<a href=\"Financial_cost.php.html#33\">App\\Models\\Financial_cost::cost_sources<\/a>"],[0,1,"<a href=\"Financial_cost.php.html#39\">App\\Models\\Financial_cost::pais<\/a>"],[0,1,"<a href=\"Financial_cost.php.html#44\">App\\Models\\Financial_cost::group<\/a>"],[0,1,"<a href=\"Financial_cost_history.php.html#31\">App\\Models\\Financial_cost_history::financing_cost<\/a>"],[0,1,"<a href=\"Financial_cost_history.php.html#36\">App\\Models\\Financial_cost_history::novelity<\/a>"],[0,1,"<a href=\"Financing_Source.php.html#29\">App\\Models\\Financing_Source::domains<\/a>"],[0,1,"<a href=\"Financing_Source.php.html#34\">App\\Models\\Financing_Source::financing_sources<\/a>"],[0,1,"<a href=\"Financing_Source.php.html#39\">App\\Models\\Financing_Source::financial_plan<\/a>"],[0,1,"<a href=\"Fundraising.php.html#38\">App\\Models\\Fundraising::implementation<\/a>"],[0,1,"<a href=\"Fundraising.php.html#43\">App\\Models\\Fundraising::Financial_Plan<\/a>"],[0,1,"<a href=\"Group.php.html#56\">App\\Models\\Group::city<\/a>"],[0,1,"<a href=\"Group.php.html#61\">App\\Models\\Group::Suggestion<\/a>"],[0,1,"<a href=\"Group.php.html#66\">App\\Models\\Group::ReportFCA<\/a>"],[0,1,"<a href=\"Historical_Pais.php.html#35\">App\\Models\\Historical_Pais::group<\/a>"],[100,1,"<a href=\"Implementation.php.html#30\">App\\Models\\Implementation::fundraising<\/a>"],[0,1,"<a href=\"Indicador_Geodata.php.html#20\">App\\Models\\Indicador_Geodata::variables<\/a>"],[0,1,"<a href=\"Indicador_Geodata.php.html#25\">App\\Models\\Indicador_Geodata::master_geodata<\/a>"],[0,1,"<a href=\"Indicator.php.html#37\">App\\Models\\Indicator::indicator_activities<\/a>"],[0,1,"<a href=\"Indicator.php.html#42\">App\\Models\\Indicator::typeIndicatorDomain<\/a>"],[0,1,"<a href=\"Indicator.php.html#47\">App\\Models\\Indicator::calculeTypeDomain<\/a>"],[0,1,"<a href=\"Indicator.php.html#52\">App\\Models\\Indicator::categoryTypeDomain<\/a>"],[0,1,"<a href=\"Indicator.php.html#57\">App\\Models\\Indicator::otherData<\/a>"],[100,1,"<a href=\"Indicator.php.html#62\">App\\Models\\Indicator::variables<\/a>"],[0,1,"<a href=\"Indicator.php.html#67\">App\\Models\\Indicator::indicatorVariable<\/a>"],[0,1,"<a href=\"Indicator.php.html#72\">App\\Models\\Indicator::indicatorAccount<\/a>"],[0,1,"<a href=\"Indicator.php.html#77\">App\\Models\\Indicator::indicatorIediVariable<\/a>"],[0,1,"<a href=\"Indicator.php.html#82\">App\\Models\\Indicator::files<\/a>"],[0,1,"<a href=\"Indicator.php.html#87\">App\\Models\\Indicator::units<\/a>"],[0,1,"<a href=\"IndicatorAccount.php.html#21\">App\\Models\\IndicatorAccount::financing_source<\/a>"],[0,1,"<a href=\"IndicatorAccount.php.html#26\">App\\Models\\IndicatorAccount::indicator<\/a>"],[0,1,"<a href=\"IndicatorIediValue.php.html#23\">App\\Models\\IndicatorIediValue::pai<\/a>"],[0,1,"<a href=\"IndicatorIediVariable.php.html#21\">App\\Models\\IndicatorIediVariable::indicator<\/a>"],[0,1,"<a href=\"IndicatorVariable.php.html#22\">App\\Models\\IndicatorVariable::indicator<\/a>"],[0,1,"<a href=\"IndicatorVariable.php.html#27\">App\\Models\\IndicatorVariable::variable<\/a>"],[0,1,"<a href=\"Indicator_activity.php.html#30\">App\\Models\\Indicator_activity::activities<\/a>"],[0,1,"<a href=\"Indicator_activity.php.html#35\">App\\Models\\Indicator_activity::evidences<\/a>"],[0,1,"<a href=\"Indicator_activity.php.html#40\">App\\Models\\Indicator_activity::variableIn<\/a>"],[0,1,"<a href=\"Indicator_activity.php.html#45\">App\\Models\\Indicator_activity::variable<\/a>"],[0,1,"<a href=\"Indicator_activity.php.html#50\">App\\Models\\Indicator_activity::indicator<\/a>"],[0,1,"<a href=\"InformesFca.php.html#43\">App\\Models\\InformesFca::pai<\/a>"],[0,1,"<a href=\"InformesFca.php.html#48\">App\\Models\\InformesFca::group<\/a>"],[0,1,"<a href=\"Master_Geodata.php.html#31\">App\\Models\\Master_Geodata::categoria_capa<\/a>"],[0,1,"<a href=\"Master_Geodata.php.html#36\">App\\Models\\Master_Geodata::tipo_capa<\/a>"],[0,1,"<a href=\"Master_Geodata.php.html#41\">App\\Models\\Master_Geodata::frecuenciaActualizacion<\/a>"],[0,1,"<a href=\"Master_Geodata.php.html#46\">App\\Models\\Master_Geodata::campos_geodata<\/a>"],[0,1,"<a href=\"NoveltyPAI.php.html#48\">App\\Models\\NoveltyPAI::pai<\/a>"],[0,1,"<a href=\"NoveltyPAI.php.html#53\">App\\Models\\NoveltyPAI::group<\/a>"],[0,1,"<a href=\"Objective.php.html#40\">App\\Models\\Objective::project<\/a>"],[0,1,"<a href=\"Objective.php.html#48\">App\\Models\\Objective::activities<\/a>"],[0,1,"<a href=\"Objective.php.html#56\">App\\Models\\Objective::objectiveProducts<\/a>"],[0,1,"<a href=\"ObjectiveHistory.php.html#31\">App\\Models\\ObjectiveHistory::projectHistory<\/a>"],[0,1,"<a href=\"ObjectiveHistory.php.html#39\">App\\Models\\ObjectiveHistory::parent<\/a>"],[0,1,"<a href=\"ObjectiveHistory.php.html#47\">App\\Models\\ObjectiveHistory::objectiveProductsHistory<\/a>"],[0,1,"<a href=\"ObjectiveHistory.php.html#55\">App\\Models\\ObjectiveHistory::activitiesHistory<\/a>"],[0,1,"<a href=\"ObjectiveProduct.php.html#68\">App\\Models\\ObjectiveProduct::product<\/a>"],[0,1,"<a href=\"ObjectiveProductHistory.php.html#31\">App\\Models\\ObjectiveProductHistory::objectiveHistory<\/a>"],[0,1,"<a href=\"ObjectiveProductHistory.php.html#39\">App\\Models\\ObjectiveProductHistory::parent<\/a>"],[0,1,"<a href=\"OtherDataYear.php.html#23\">App\\Models\\OtherDataYear::otherData<\/a>"],[0,1,"<a href=\"Other_data.php.html#22\">App\\Models\\Other_data::indicator<\/a>"],[0,1,"<a href=\"Other_data.php.html#27\">App\\Models\\Other_data::typeOtherDataDomain<\/a>"],[0,1,"<a href=\"PAI.php.html#57\">App\\Models\\PAI::group<\/a>"],[0,1,"<a href=\"PAI.php.html#65\">App\\Models\\PAI::strategicLines<\/a>"],[0,1,"<a href=\"PAI.php.html#73\">App\\Models\\PAI::versions<\/a>"],[0,1,"<a href=\"PAI.php.html#78\">App\\Models\\PAI::financial_plans<\/a>"],[0,1,"<a href=\"PAI.php.html#83\">App\\Models\\PAI::financial_costs<\/a>"],[0,1,"<a href=\"PAI.php.html#88\">App\\Models\\PAI::Suggestion<\/a>"],[0,1,"<a href=\"PAI.php.html#93\">App\\Models\\PAI::reportFCA<\/a>"],[0,1,"<a href=\"PAI.php.html#98\">App\\Models\\PAI::indicatorIediValue<\/a>"],[0,1,"<a href=\"PAIHistory.php.html#31\">App\\Models\\PAIHistory::parent<\/a>"],[0,1,"<a href=\"PAIHistory.php.html#39\">App\\Models\\PAIHistory::strategicLinesHistory<\/a>"],[0,1,"<a href=\"Payment.php.html#45\">App\\Models\\Payment::evidence<\/a>"],[0,1,"<a href=\"Permission.php.html#34\">App\\Models\\Permission::rols<\/a>"],[0,1,"<a href=\"Permission_Rol.php.html#37\">App\\Models\\Permission_Rol::permission<\/a>"],[0,1,"<a href=\"Permission_Rol.php.html#44\">App\\Models\\Permission_Rol::rol<\/a>"],[0,1,"<a href=\"Phase.php.html#23\">App\\Models\\Phase::variable<\/a>"],[0,1,"<a href=\"Program.php.html#47\">App\\Models\\Program::strategicLine<\/a>"],[0,1,"<a href=\"Program.php.html#63\">App\\Models\\Program::projects<\/a>"],[0,1,"<a href=\"ProgramHistory.php.html#27\">App\\Models\\ProgramHistory::strategicLineHistory<\/a>"],[0,1,"<a href=\"ProgramHistory.php.html#35\">App\\Models\\ProgramHistory::parent<\/a>"],[0,1,"<a href=\"ProgramHistory.php.html#40\">App\\Models\\ProgramHistory::projectsHistory<\/a>"],[0,1,"<a href=\"Project.php.html#41\">App\\Models\\Project::program<\/a>"],[0,1,"<a href=\"Project.php.html#46\">App\\Models\\Project::objectives<\/a>"],[0,1,"<a href=\"ProjectHistory.php.html#31\">App\\Models\\ProjectHistory::programHistory<\/a>"],[0,1,"<a href=\"ProjectHistory.php.html#39\">App\\Models\\ProjectHistory::parent<\/a>"],[0,1,"<a href=\"ProjectHistory.php.html#47\">App\\Models\\ProjectHistory::objectivesHistory<\/a>"],[100,1,"<a href=\"Rol.php.html#34\">App\\Models\\Rol::permissions<\/a>"],[0,1,"<a href=\"Rol.php.html#39\">App\\Models\\Rol::users<\/a>"],[0,1,"<a href=\"Rol_User.php.html#16\">App\\Models\\Rol_User::user<\/a>"],[0,1,"<a href=\"Rol_User.php.html#21\">App\\Models\\Rol_User::rol<\/a>"],[0,1,"<a href=\"State.php.html#16\">App\\Models\\State::Country<\/a>"],[0,1,"<a href=\"State.php.html#21\">App\\Models\\State::City<\/a>"],[0,1,"<a href=\"StrategicLine.php.html#47\">App\\Models\\StrategicLine::pai<\/a>"],[0,1,"<a href=\"StrategicLine.php.html#55\">App\\Models\\StrategicLine::programs<\/a>"],[0,1,"<a href=\"StrategicLineHistory.php.html#32\">App\\Models\\StrategicLineHistory::paiHistory<\/a>"],[0,1,"<a href=\"StrategicLineHistory.php.html#40\">App\\Models\\StrategicLineHistory::parent<\/a>"],[0,1,"<a href=\"StrategicLineHistory.php.html#48\">App\\Models\\StrategicLineHistory::programsHistory<\/a>"],[0,1,"<a href=\"Suggestion.php.html#27\">App\\Suggestion::user<\/a>"],[0,1,"<a href=\"Suggestion.php.html#33\">App\\Suggestion::pais<\/a>"],[0,1,"<a href=\"Suggestion.php.html#37\">App\\Suggestion::group<\/a>"],[0,1,"<a href=\"Suggestion.php.html#42\">App\\Suggestion::domain<\/a>"],[0,1,"<a href=\"User.php.html#84\">App\\Models\\User::rols<\/a>"],[0,1,"<a href=\"User.php.html#92\">App\\Models\\User::group<\/a>"],[0,1,"<a href=\"User.php.html#100\">App\\Models\\User::sendPasswordResetNotification<\/a>"],[100,1,"<a href=\"User.php.html#108\">App\\Models\\User::getJWTIdentifier<\/a>"],[100,1,"<a href=\"User.php.html#116\">App\\Models\\User::getJWTCustomClaims<\/a>"],[0,1,"<a href=\"User.php.html#121\">App\\Models\\User::rolUser<\/a>"],[60,1,"<a href=\"User.php.html#127\">App\\Models\\User::boot<\/a>"],[0,1,"<a href=\"Variable.php.html#35\">App\\Models\\Variable::indicator<\/a>"],[0,1,"<a href=\"Variable.php.html#40\">App\\Models\\Variable::numeratorIn<\/a>"],[0,1,"<a href=\"Variable.php.html#45\">App\\Models\\Variable::denominatorIn<\/a>"],[0,1,"<a href=\"Variable.php.html#50\">App\\Models\\Variable::weighingIn<\/a>"],[100,1,"<a href=\"Variable.php.html#55\">App\\Models\\Variable::phases<\/a>"],[100,1,"<a href=\"Variable.php.html#60\">App\\Models\\Variable::indicador_geodata<\/a>"],[0,1,"<a href=\"approvalReport.php.html#39\">App\\Models\\ApprovalReport::pai<\/a>"],[0,1,"<a href=\"approvalReport.php.html#45\">App\\Models\\ApprovalReport::group<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

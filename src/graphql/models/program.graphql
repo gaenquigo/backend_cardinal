@@ -1,0 +1,39 @@
+type Program {
+    id: ID!
+    strategic_line_id: Int!
+    national_program_id: Int
+    car_program: String
+    weighing: Int!
+    strategicLine: StrategicLine! @belongsTo
+    #NationalProgram: NationalProgram! @belongsTo
+    projects: [Project] @hasMany
+}
+
+input idProgramInput {
+    id: ID! @eq @rules(apply: ["required", "exists:programs,id"])
+}
+
+input RegisterProgramInput {
+    strategic_line_id: Int! @rules(apply: ["required", "exists:strategic_lines,id"])
+    national_program_id: Int @rules(apply: ["nullable"])
+    car_program: String @rules(apply: ["nullable"])
+    weighing: Int! @rules(apply: ["required", "numeric", "between:1,100"])
+}
+
+input editProgramInput {
+    id: ID! @eq @rules(apply: ["required", "exists:programs,id"])
+    strategic_line_id: Int @rules(apply: ["exists:strategic_lines,id"])
+    national_program_id: Int #@rules(apply: ["exists:national_programs,id"])
+    car_program: String @rules(apply: ["nullable"])
+    weighing: Int @rules(apply: ["numeric", "between:1,100"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    programs: [Program!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteProgram(input: idProgramInput! @spread): Program! @delete
+    createProgram(input: RegisterProgramInput! @spread): Program! @create
+    updateProgram(input: editProgramInput! @spread): Program! @update
+}

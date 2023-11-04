@@ -1,0 +1,38 @@
+type Phase {
+    id: ID!
+    name: String!
+    percentage: Int!
+    value: Int
+    variable_id: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+}
+
+input deletePhaseInput {
+    id: [ID] @eq @rules(apply: ["required"])
+}
+
+input createPhaseInput {
+    name: String! @rules(apply: ["required"])
+    percentage: Int! @rules(apply: ["required"])
+    value: Int
+}
+
+input createOnePhaseInput {
+    name: String! @rules(apply: ["required"])
+    percentage: Int! @rules(apply: ["required"])
+    value: Int
+    variable_id: Int! @rules(apply: ["required"])
+}
+
+input updatePhaseInput {
+    id: [ID]! @eq @rules(apply: ["required"])
+    name: String! @rules(apply: ["required"])
+    percentage: Int! @rules(apply: ["required"])
+    value: Int
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deletePhase(input: deletePhaseInput! @spread): [Phase]! @delete
+    createPhase(input: createOnePhaseInput! @spread): Phase! @create
+}

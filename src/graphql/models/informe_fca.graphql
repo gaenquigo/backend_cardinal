@@ -1,0 +1,38 @@
+type InformesFca {
+    id: ID!
+    file: String
+    filePago : String
+    date: String
+    archivoPago: Boolean
+    status : Boolean
+    pai_id: Int
+    pai: PAI! @belongsTo
+    group_id: Int
+    group: Group! @belongsTo
+}
+
+
+
+input registerInformeFCAInput {
+    id: ID 
+    file: String @rules(apply: ["string"])
+    filePago : String
+    date: String @rules(apply: ["Date"])
+    archivoPago : Boolean
+    status : Boolean
+    pai_id: Int
+    group_id: Int @rules(apply: ["exists:groups,id"])
+   
+}
+
+
+extend type Query @middleware(checks: ["auth:api"]){
+    informesFca: [InformesFca!]! @all
+  
+}
+
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createFca(input: registerInformeFCAInput! @spread): InformesFca! @create
+    updateFca(input: registerInformeFCAInput! @spread): InformesFca! @update
+}

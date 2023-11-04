@@ -1,0 +1,24 @@
+type Implementation {
+    id: ID!
+    created_at: DateTime
+    updated_at: DateTime
+    p_a_i_s_id: Int! 
+    fundraising: [Fundraising] @hasMany
+}
+
+input RegisterImplementationInput {
+    id: ID 
+    p_a_i_s_id: Int!
+   fundraising: CreatefundraisingBelongsTo
+}
+input CreatefundraisingBelongsTo {
+    create: [createImplementationInput]
+    
+}
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createImplementation(input: RegisterImplementationInput! @spread): Implementation! @create
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    implementation: [Implementation!]! @all    
+}

@@ -1,0 +1,9 @@
+type Continent {
+    id: ID!
+    name: String!
+    country: [Country!]!  @hasMany
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    continent: [Continent!]! @all
+}

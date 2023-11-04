@@ -1,0 +1,34 @@
+type Rol {
+    id: ID!
+    name: String!
+    description: String!
+    created_at: DateTime!
+    updated_at: DateTime!
+    permissions: [Permission!]! @belongsToMany
+}
+
+input newRolInput {
+    name: String! @rules(apply: ["required", "string", "unique:rols,name"])
+    description: String! @rules(apply: ["required", "string"])
+}
+
+input editRolInput {
+    id: ID! @rules(apply: ["required"])
+    name: String @rules(apply: ["string"])
+    description: String @rules(apply: ["string"])
+}
+
+input idRolInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    rols: [Rol!]! @all
+    rolById(input: idRolInput @spread): Rol @find
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createRol(input: newRolInput @spread): Rol @create
+    updateRol(input: editRolInput @spread): Rol @update
+    deleteRol(input: idRolInput! @spread): Rol @delete
+}

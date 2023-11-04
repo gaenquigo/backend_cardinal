@@ -1,0 +1,50 @@
+type ActivitySource {
+    id: ID!
+    activity_id: ID!
+    source_id: Int!
+    goal: Int!
+    value: Float!
+    evidence_balance: Float!
+    age: Int!
+    activity: Activity
+    financial_plan: Financial_Plan @hasOne
+}
+
+input newActivitySourceInput {
+    activity_id: ID! @rules(apply: ["required","exists:activities,id"])
+    source_id: Int! @rules(apply: ["required"])
+    goal: Int! @rules(apply: ["required"])
+    value: Float! @rules(apply: ["required"])
+    evidence_balance: Float! @rules(apply: ["required"])
+    age: Int! @rules(apply: ["required", "in:1,2,3,4"])
+}
+
+input editActivitySourceInput {
+    id: ID! @rules(apply: ["required", "exists:activity_sources,id"])
+    activity_id: ID @rules(apply: ["exists:activities,id"])
+    source_id: Int
+    goal: Int
+    value: Float
+    evidence_balance: Float
+    age: Int @rules(apply: ["in:1,2,3,4"])
+}
+
+input idActivitySourceInput {
+    id: ID! @eq @rules(apply: ["required", "exists:activity_sources,id"])
+}
+
+input idSourceInput {
+    source_id: Int! @eq @rules(apply: ["required"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    activitySources: [ActivitySource!]! @all
+    activitySourcesById(input: idActivitySourceInput @spread): ActivitySource @find
+    activitySourcesBySourceId(input: idSourceInput @spread): [ActivitySource] @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createActivitySource(input: newActivitySourceInput, @spread): ActivitySource @create
+    updateActivitySource(input: editActivitySourceInput, @spread): ActivitySource @update
+    deleteActivitySource(input: idActivitySourceInput!, @spread): ActivitySource @delete
+}

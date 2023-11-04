@@ -1,0 +1,39 @@
+type EvidenceFinancial {
+    id: ID!
+    value: Float!
+    activity_source_id: ID!
+    evidence_id: ID!
+    activitySource: ActivitySource @belongsTo
+    evidenceAdvance: EvidenceAdvance @belongsTo
+}
+
+input newEvidenceFinancialInput {
+    value: Float! @rules(apply: ["required"])
+    activity_source_id: ID! @rules(apply: ["required", "exists:activity_sources,id"])
+    evidence_id: ID! @rules(apply: ["required", "exists:evidence_advance,id"])
+}
+
+input editEvidenceFinancialInput {
+    id: ID! @rules(apply: ["required", "exists:evidence_financial,id"])
+    value: Float
+    activity_source_id: ID @rules(apply: ["exists:activity_sources,id"])
+    evidence_id: ID @rules(apply: ["exists:evidence_advance,id"])
+}
+
+input idEvidenceFinancialInput {
+    id: ID! @eq @rules(apply: ["required", "exists:evidence_financial,id"])
+}
+input idAllEvidenceFinancialInput {
+    id: [ID] @eq @rules(apply: ["required","exists:evidence_financial,id"])
+}
+extend type Query @middleware(checks: ["auth:api"]) {
+    evidenceFinancial: [EvidenceFinancial!]! @all
+    evidenceFinancialById(input: idEvidenceFinancialInput @spread): EvidenceFinancial @find
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createEvidenceFinancial(input: newEvidenceFinancialInput, @spread): EvidenceFinancial @create
+    updateEvidenceFinancial(input: editEvidenceFinancialInput, @spread): EvidenceFinancial @update
+    deleteEvidenceFinancial(input: idEvidenceFinancialInput!, @spread): EvidenceFinancial @delete
+    deleteAllEvidenceFinancial(input: idAllEvidenceFinancialInput! @spread): [EvidenceFinancial]! @delete
+}

@@ -1,0 +1,103 @@
+type Financial_Plan {
+    id: ID!
+    p_a_i_id: Int!
+    source_id: Int!
+    financing_Source: Financing_Source @hasOne
+    value: Float
+    investment_percentage: Float
+    investment: Float
+    investment_balance: Float
+    functioning_percentage: Float
+    functioning: Float
+    functioning_balance: Float
+    debt_service_percentage: Float
+    debt_service: Float
+    debt_service_balance: Float
+    fund_percentage: Float
+    fund: Float
+    fund_balance: Float
+    year: Int!
+    group_id: Int!
+    created_at: DateTime!
+    updated_at: DateTime!
+    fundraising: [Fundraising!]! @hasMany
+    activity_source : [ActivitySource!]!  @hasMany
+    pai: PAI @belongsTo
+}
+
+input idFinancialPlanInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input idPaiInput {
+    p_a_i_id: Int! @eq @rules(apply: ["required"])
+}
+
+input idPaiYearInput {
+    p_a_i_id: Int! @eq @rules(apply: ["required"])
+    year: Int! @eq @rules(apply: ["required"])
+}
+
+input DeletePlanYearInput {
+    p_a_i_id: Int! @eq @rules(apply: ["required"])
+    year: Int! @eq @rules(apply: ["required"])
+}
+
+input RegisterFinancialPlanInput {
+    id: ID
+    p_a_i_id: Int! @rules(apply: ["required"])
+    source_id: Int! @rules(apply: ["required"])
+    value: Float
+    investment_percentage: Float
+    investment: Float
+    investment_balance: Float
+    functioning_percentage: Float
+    functioning: Float
+    functioning_balance: Float
+    debt_service_percentage: Float
+    debt_service: Float
+    debt_service_balance: Float
+    fund_percentage: Float
+    fund: Float
+    fund_balance: Float
+    year: Int!
+}
+
+input EditFinancialPlanInput {
+    id: ID! @eq @rules(apply: ["required"])
+    p_a_i_id: Int! @rules(apply: ["required"])
+    source_id: Int! @rules(apply: ["required"])
+    value: Float
+    investment_percentage: Float
+    investment: Float
+    investment_balance: Float
+    functioning_percentage: Float
+    functioning: Float
+    functioning_balance: Float
+    debt_service_percentage: Float
+    debt_service: Float
+    debt_service_balance: Float
+    fund_percentage: Float
+    fund: Float
+    fund_balance: Float
+    year: Int!
+}
+
+input EditFinancialInvestmentPlanInput {
+    id: ID! @eq @rules(apply: ["required"])
+    investment_balance: Float!
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    financialPlanById(input: idFinancialPlanInput @spread): Financial_Plan @find
+    financialPlanByPaiId(input: idPaiInput @spread): [Financial_Plan!]! @all
+    financialPlanByPaiIdYear(input: idPaiYearInput @spread): [Financial_Plan!]! @all
+    financialPlanALL: [Financial_Plan!]! @all
+
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createFinancialPlan(input: RegisterFinancialPlanInput! @spread): Financial_Plan! @create
+    updateFinancialPlan(input: EditFinancialPlanInput! @spread): Financial_Plan! @update
+    updateFinancialPlanInvestment(input: EditFinancialInvestmentPlanInput! @spread): Financial_Plan! @update
+}

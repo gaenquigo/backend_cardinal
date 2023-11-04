@@ -1,0 +1,24 @@
+type Historical_Pais {
+  id: ID!
+  name: String
+  anio: Int
+  url: String
+  group_id: Int
+  group: Group! @belongsTo
+}
+
+input registerHistoricalPaisInput {
+  name: String! @rules(apply: ["required", "string"])
+  anio: Int! @rules(apply: ["required"])
+  url: String! @rules(apply: ["required", "string"])
+  group_id: Int! @rules(apply: ["required"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+  historicalPais: [Historical_Pais!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+  createHistoricalPais(input: registerHistoricalPaisInput! @spread): Historical_Pais! @create
+}
+

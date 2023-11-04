@@ -1,0 +1,64 @@
+type PAI {
+    id: ID!
+    name: String!
+    start_date: String!
+    end_date: String!
+    director_name: String!
+    group_id: Int!
+    approved: Boolean!
+    group: Group! @belongsTo
+    strategicLines: [StrategicLine]! @hasMany
+    financial_costs: [Financial_cost]! @hasMany
+    financial_plans: [Financial_Plan] @hasMany
+    indicatorIediValue: [IndicatorIediValue] @hasMany
+    versions: [PAIHistory]! @hasMany
+}
+
+input registerPAIInput {
+    name: String! @rules(apply: ["required", "string"])
+    start_date: String! @rules(apply: ["required", "Date"])
+    end_date: String! @rules(apply: ["required", "Date"])
+    director_name: String! @rules(apply: ["required", "String"])
+    group_id: Int! @rules(apply: ["required", "exists:groups,id"])
+    version: Int
+    approved: Boolean! @rules(apply: ["required", "Boolean"])
+}
+
+input editPAIInput {
+    id: ID! @eq @rules(apply: ["required", "exists:pais,id"])
+    name: String @rules(apply: ["string"])
+    start_date: String @rules(apply: ["Date"])
+    end_date: String @rules(apply: ["Date"])
+    director_name: String @rules(apply: ["String"])
+    group_id: Int @rules(apply: ["exists:groups,id"])
+    version: Int
+    approved: Boolean @rules(apply: ["Boolean"])
+}
+
+input idPAIInput {
+    id: ID! @eq @rules(apply: ["required", "exists:pais,id"])
+}
+
+input versionPAIInput {
+    version: Int! @eq @rules(apply: ["required"])
+    group_id: Int @eq @rules(apply: ["exists:groups,id"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]){
+    pais: [PAI!]! @all
+    paisByGroupPag(group_id: Int @eq @rules(apply: ["exists:groups,id"])): [PAI!]! @paginate
+    paisByGroup(group_id: Int @eq @rules(apply: ["exists:groups,id"])): [PAI!]! @all
+    paiById(input: idPAIInput @spread): PAI @find
+    paisByApproved(input: approvedPaiInput @spread):  [PAI!]! @all
+}
+
+input approvedPaiInput {
+    approved: Boolean  @eq @rules(apply: ["required"])
+    group_id: Int @eq @rules(apply: ["exists:groups,id"])
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deletePAI(input: idPAIInput! @spread): PAI! @delete
+    createPAI(input: registerPAIInput! @spread): PAI! @create
+    updatePAI(input: editPAIInput! @spread): PAI! @update
+}

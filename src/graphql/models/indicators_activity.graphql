@@ -1,0 +1,75 @@
+type Indicator_activity {
+    id: ID!
+    numerator: Float
+    denominator: Float
+    weighing: Float
+    result: Float
+    result_completed: Float
+    indicator_id: Int!
+    activities_id: Int!
+    year: Int!
+    variable_in: Int!
+    variable_id: Int!
+    evidence_id: Int
+    activities: Activity @belongsTo
+    variableIn: Domain @hasOne
+    variable: Variable @hasOne
+    indicator: Indicator @hasOne
+    evidences: EvidenceAdvance @belongsTo
+}
+
+input createActivityIndicatorInput {
+    id: ID
+    numerator: Float
+    denominator: Float
+    weighing: Float
+    result: Float
+    result_completed: Float
+    indicator_id: Int!
+    year: Int!
+    variable_in: Int!
+    variable_id: Int!
+    evidence_id: Int
+    activities_id: Int
+}
+
+input updateActivityIndicatorInput {
+    id: Int!
+    numerator: Float
+    denominator: Float
+    weighing: Float
+    indicator_id: Int
+    year: Int
+    variable_in: Int
+    variable_id: Int
+    evidence_id: Int
+    activities_id: Int
+}
+
+input updateweighingActivityIndicatorInput {
+    id: Int!    
+    weighing: Float!  
+}
+
+input DeleteIndicatorActivies {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input DeleteAllIndicatorActivies {
+    id: [ID] @eq @rules(apply: ["required"])
+}
+
+input idAllIndicatorActiviesInput {
+    id: [ID] @eq 
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    IndicatorActivityAll: [Indicator_activity!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteIndicatorActivies(input: DeleteIndicatorActivies! @spread): Indicator_activity! @delete
+    deleteAllIndicatorActivies(input: DeleteAllIndicatorActivies! @spread): [Indicator_activity]! @delete
+    deleteAllIndActividades(input: idAllIndicatorActiviesInput! @spread): [Indicator_activity] @delete
+    updateweighingIndicatorActivity(input: updateweighingActivityIndicatorInput! @spread): Indicator_activity @update
+}

@@ -1,0 +1,56 @@
+type User {
+    id: ID!
+    name: String!
+    last_name: String!
+    type_document: String!
+    document: String!
+    group_id: Int!
+    email: String!
+    start_date: String!
+    end_date: String!
+    active: String
+    created_at: DateTime!
+    updated_at: DateTime!
+    rols: [Rol!]! @belongsToMany
+    group: Group! @belongsTo
+
+}
+
+input idUserInput {
+    id: ID @eq @rules(apply: ["required", "exists:users,id"])
+}
+
+input RegisterUserInput {
+    name: String! @rules(apply: ["required", "string"])
+    last_name: String! @rules(apply: ["required", "string"])
+    type_document: String! @rules(apply: ["required", "string", "in:CEDULA,CEDULA_EXTRANJERIA,NUIP,PASAPORTE"])
+    document: String! @rules(apply: ["required", "unique:users,document"])
+    group_id: Int! @rules(apply: ["required", "exists:groups,id"])
+    email: String! @rules(apply: ["required", "email", "unique:users,email"])
+    end_date: String! @rules(apply: ["required"])
+    active: String @rules(apply: ["in:1,0"])
+}
+
+input editUserInput {
+    id: ID! @rules(apply: ["required"])
+    name: String
+    last_name: String
+    type_document: String @rules(apply: ["in:CEDULA,CEDULA_EXTRANJERIA,NUIP,PASAPORTE"])
+    document: String
+    group_id: Int @rules(apply: ["exists:groups,id"])
+    email: String @rules(apply: ["email"])
+    start_date: String
+    end_date: String
+    active: String @rules(apply: ["in:1,0"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    users(group_id: Int @eq @rules(apply: ["exists:groups,id"])): [User!]! @middleware(checks: ["auth:api"]) @all
+    user(id: ID @eq): User @middleware(checks: ["auth:api"]) @find
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteUser(input: idUserInput! @spread): User @delete
+    createUser(input: RegisterUserInput! @spread): User! @create
+    updateUser(input: editUserInput! @spread): User! @update
+}

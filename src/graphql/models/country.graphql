@@ -1,0 +1,11 @@
+type Country {
+    id: ID!
+    name: String!
+    continent_id: ID!
+    dialing:  String!
+    continent: Continent!
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    country: [Country!]! @all
+}

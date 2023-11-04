@@ -1,0 +1,37 @@
+version: 0.2
+
+#env:
+#  variables:
+#    VAR1: value1
+
+phases:
+  install:
+    runtime-versions:
+      docker: 19
+
+  pre_build:
+    commands:
+      - echo "Logging in to ECR..."
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      #- IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-8)
+      - docker pull $CONTAINER_REPOSITORY_URL:latest || true
+
+  build:
+    commands:
+      - echo "Build started on `date`"
+      - echo "Building the Docker image..."
+      - docker build --cache-from $CONTAINER_REPOSITORY_URL:latest -t $CONTAINER_REPOSITORY_URL:$COMMIT_HASH .
+      - docker tag $CONTAINER_REPOSITORY_URL:$COMMIT_HASH $CONTAINER_REPOSITORY_URL:latest
+
+  post_build:
+    commands:
+      - echo "Build completed on `date`"
+      - echo "Pushing the Docker image..."
+      - docker push $CONTAINER_REPOSITORY_URL:$COMMIT_HASH
+      - docker push $CONTAINER_REPOSITORY_URL:latest
+      - echo "[{\"name\":\"$CONTAINER_NAME\",\"imageUri\":\"$CONTAINER_REPOSITORY_URL:$COMMIT_HASH\"}]" > imagedefinitions.json
+
+artifacts:
+  files:
+    - imagedefinitions.json

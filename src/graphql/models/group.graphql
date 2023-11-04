@@ -1,0 +1,46 @@
+type Group {
+    id: ID!
+    name: String!
+    city_id: ID!
+    state_id: ID!
+    acronym: String
+    address: String
+    created_at: DateTime!
+    updated_at: DateTime!
+    active: String,
+    city: City!
+    state: State!
+}
+
+input newGroupInput {
+    name: String! @rules(apply: ["required", "string"])
+    city_id: ID! @rules(apply: ["required","exists:cities,id"])
+    state_id: ID! @rules(apply: ["required","exists:states,id"])
+    acronym: String
+    address: String
+}
+
+input editGroupInput {
+    id: ID! @rules(apply: ["required"])
+    name: String @rules(apply: ["string"])
+    city_id: ID @rules(apply: ["exists:cities,id"])
+    state_id: ID @rules(apply: ["exists:states,id"])
+    active: String
+    acronym: String
+    address: String
+}
+
+input idGroupInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    group: [Group!]! @all
+    groupById(input: idGroupInput @spread): Group @find
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createGroup(input: newGroupInput, @spread): Group @create
+    updateGroup(input: editGroupInput, @spread): Group @update
+    deleteGroup(input: idGroupInput!, @spread): Group @delete
+}

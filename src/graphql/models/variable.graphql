@@ -1,0 +1,106 @@
+type Variable {
+    id: ID!
+    category_name: String
+    phase_have: Boolean
+    category_weighing: String
+    numerator_name: String
+    abbreviated_numerator: String
+    numerator_in: Int
+    denominator_name: String
+    abbreviated_denominator: String
+    denominator_in: Int
+    name_weighing: String
+    abbreviated_weighing: String
+    weighing_in: Int
+    indicator_id: Int
+    numeratorIn: Domain @hasOne
+    denominatorIn: Domain @hasOne
+    weighingIn: Domain @hasOne
+    phases: [Phase] @hasMany
+    indicator: Indicator @belongsTo
+    indicador_geodata: [Indicador_Geodata] @hasMany
+}
+
+input deleteVariableInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input deleteAllVariableInput {
+    id: [ID] @eq @rules(apply: ["required"])
+}
+
+input createVariableInput {
+    category_name: String
+    phase_have: Boolean
+    category_weighing: String
+    numerator_name: String
+    abbreviated_numerator: String
+    numerator_in: Int
+    denominator_name: String
+    abbreviated_denominator: String
+    denominator_in: Int
+    name_weighing: String
+    abbreviated_weighing: String
+    weighing_in: Int
+    phases: CreatePhasesHasMany
+    indicador_geodata: CreateIndicatorGeodataHasMany
+}
+
+input createOneVariableInput {
+    category_name: String
+    phase_have: Boolean
+    category_weighing: String
+    numerator_name: String
+    abbreviated_numerator: String
+    numerator_in: Int
+    denominator_name: String
+    abbreviated_denominator: String
+    denominator_in: Int
+    name_weighing: String
+    abbreviated_weighing: String
+    weighing_in: Int
+    indicator_id: Int
+    phases: CreatePhasesHasMany
+    indicador_geodata: CreateIndicatorGeodataHasMany
+}
+
+input updateVariableInput {
+    id: ID! @eq @rules(apply: ["required"])
+    category_name: String
+    phase_have: Boolean
+    category_weighing: String
+    numerator_name: String
+    abbreviated_numerator: String
+    numerator_in: Int
+    denominator_name: String
+    abbreviated_denominator: String
+    denominator_in: Int
+    name_weighing: String
+    abbreviated_weighing: String
+    weighing_in: Int
+    phases: CreatePhasesHasMany
+    indicador_geodata: CreateIndicatorGeodataHasMany
+}
+
+input CreatePhasesHasMany {
+    create: [createPhaseInput]
+    update: [updatePhaseInput]
+    delete: [deletePhaseInput]
+}
+
+input CreateIndicatorGeodataHasMany {
+    create: [createIndicatorGeodataInput]
+    update: [updateIndicatorGeodataInput]
+    delete: [deleteIndicatorGeodataInput]
+}
+
+input indicador_geodata {
+    create: [createIndicatorGeodataInput]
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteVariable(input: deleteVariableInput! @spread): Variable! @delete
+    deleteAllVariable(input: deleteAllVariableInput! @spread): [Variable]! @delete
+    createVariable(input: createOneVariableInput! @spread): Variable! @create
+    updateVariable(input: updateVariableInput! @spread): Variable! @create
+}

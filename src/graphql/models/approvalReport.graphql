@@ -1,0 +1,31 @@
+type ApprovalReport {
+    id: ID!
+    file: String
+    date: String!
+    agreement: String!
+    pai_id: Int
+    pai: PAI! @belongsTo
+    group_id: Int
+    group: Group! @belongsTo
+}
+
+
+input registerapprovalReportInput {
+    id: ID
+    file: String
+    date: String! @rules(apply: ["required", "Date"])
+    agreement: String! @rules(apply: ["required"])
+    pai_id: Int 
+    group_id: Int
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createApprovalReportI(input: registerapprovalReportInput! @spread): ApprovalReport! @create  
+}
+
+
+extend type Query @middleware(checks: ["auth:api"]) {
+
+   approvalReports : [ApprovalReport!]! @all
+  
+}

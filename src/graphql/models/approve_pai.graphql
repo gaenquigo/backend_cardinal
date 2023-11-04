@@ -1,0 +1,29 @@
+type ApprovePAI {
+    id: ID!
+    file: String
+    date: String!
+    resolution_number: String!
+    pai_id: Int!
+    pai: PAI! @belongsTo
+}
+
+input registerApprovePAIInput {
+    file: String
+    date: String! @rules(apply: ["required", "Date"])
+    resolution_number: String! @rules(apply: ["required"])
+    pai_id: Int! @rules(apply: ["required", "exists:pais,id"])
+}
+
+input editApprovePAIInput {
+    id: ID! @eq @rules(apply: ["required", "exists:pais,id"])
+    file: String
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    approves_pai: [ApprovePAI!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createApprovePAI(input: registerApprovePAIInput! @spread): ApprovePAI! @create
+    updateApprovePAI(input: editApprovePAIInput! @spread): ApprovePAI! @update
+}

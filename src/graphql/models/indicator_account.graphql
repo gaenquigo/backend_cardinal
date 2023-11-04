@@ -1,0 +1,38 @@
+type IndicatorAccount {
+    id: ID!
+    account_ppta_id: Int
+    account_id: Int
+    financing_source_id: Int
+    indicator_id: Int    
+    created_at: DateTime
+    updated_at: DateTime    
+}
+
+input createIndicatorAccountInput {
+    id: ID
+    account_ppta_id: Int
+    account_id: Int
+    financing_source_id: Int
+    indicator_id: Int    
+    created_at: DateTime
+    updated_at: DateTime
+}
+
+input updateIndicatorAccountInput {
+    id: ID!
+    account_ppta_id: Int
+    account_id: Int
+    financing_source_id: Int
+}
+
+input deleteIndicatorAccountInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input deleteAllIndicatorAccountInput {
+    id: [ID] @eq @rules(apply: ["required"])
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteAllIndicatorAccountData(input: deleteAllIndicatorAccountInput! @spread): [IndicatorAccount]! @delete
+}

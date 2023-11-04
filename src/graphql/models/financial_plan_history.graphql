@@ -1,0 +1,21 @@
+type Financial_Plan_History {
+    id: ID
+    history: String
+    pai_history_id: ID
+    parent_id: ID
+    paiHistory: PAIHistory! @belongsTo
+}
+
+input registerFinancialPlanHistoryInput {
+    history: String! @rules(apply: ["required", "string"])
+    pai_history_id: ID! @rules(apply: ["required", "exists:pais_history,id"])
+    parent_id: ID! @rules(apply: ["required", "exists:financial_plans,id"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    financialPlanHistory: [Financial_Plan_History!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createFinancialPlanHistory(input: registerFinancialPlanHistoryInput! @spread): Financial_Plan_History! @create
+}

@@ -1,0 +1,68 @@
+type File {
+    id: ID!
+    file_url: String!
+    name: String!
+    type: String!
+    size: String!
+    indicator_id: Int
+    p_a_i_id: Int
+    noveltyGastos_id: Int
+    approve_p_a_i_id: Int
+    reports_id : Int
+    reportsHistorical_id :Int 
+    informesfca_id : Int
+#    pai: PAI!
+    approvePAI: ApprovePAI!
+    approveReports: ApprovalReport!
+    historicalReports : Historical_Pais
+    
+}
+
+input newFileInput {
+    file_url: String! @rules(apply: ["required", "string"])
+    name: String!
+    type: String!
+    size: String!
+    indicator_id: Int
+    noveltyGastos_id: Int
+    p_a_i_id: Int 
+    approve_p_a_i_id: Int 
+    reports_id: Int 
+    reportsHistorical_id :Int 
+   informesfca_id : Int
+}
+
+input editFileInput {
+    id: ID! @rules(apply: ["exists:files,id"])
+    file_url: String @rules(apply: ["string"])
+    name: String
+    type: String
+    size: String
+    noveltyGastos_id: Int
+    indicator_id: Int #@rules(apply: ["exists:indicators,id"])
+    p_a_i_id: Int #@rules(apply: ["exists:pais,id"])
+    approve_p_a_i_id: Int @rules(apply: ["exists:approve_pais,id"])
+    reports_id: Int
+    reportsHistorical_id :Int 
+    informesfca_id : Int
+
+}
+
+input idFileInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    file: [File!]! @all
+    fileById(input: idFileInput @spread): File @find
+    DownHist(file: String!): String
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createFile(input: newFileInput, @spread): File @create
+    updateFile(input: editFileInput, @spread): File @update
+    deleteFile(input: idFileInput!, @spread): File @delete
+
+    "Upload a file that is publicly available."
+    upload(file: Upload!): String
+}

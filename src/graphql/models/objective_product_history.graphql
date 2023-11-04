@@ -1,0 +1,22 @@
+type ObjectiveProductHistory {
+    id: ID
+    history: String
+    objective_history_id: ID
+    parent_id: ID
+    objectiveHistory: ObjectiveHistory @belongsTo
+    parent: ObjectiveProduct
+}
+
+input newObjectiveProductHistoryInput {
+    history: String! @rules(apply: ["required"])
+    objective_history_id: ID! @rules(apply: ["required","exists:objectives_history,id"])
+    parent_id: ID! @rules(apply: ["required","exists:objective_products,id"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    objectiveProductsHistory: [ObjectiveProductHistory!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createObjectiveProductHistory(input: newObjectiveProductHistoryInput, @spread): ObjectiveProductHistory @create
+}

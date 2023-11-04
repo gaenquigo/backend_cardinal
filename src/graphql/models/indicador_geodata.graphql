@@ -1,0 +1,30 @@
+type Indicador_Geodata {
+    id: ID!
+    variable_id: Int
+    master_geodata_id: Int!
+    master_geodata: Master_Geodata @hasOne
+}
+
+input createIndicatorGeodataInput {
+    master_geodata_id: Int! @rules(apply: ["required"])
+}
+
+input updateIndicatorGeodataInput {
+    id: ID! @eq @rules(apply: ["required"])
+    master_geodata_id: Int! @rules(apply: ["required"])
+}
+
+input deleteIndicatorGeodataInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input deleteAllIndicatorGeodataInput {
+    id: [ID] @eq @rules(apply: ["required"])
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteAllIndicatorGeodata(input: deleteAllIndicatorGeodataInput! @spread): [Indicador_Geodata]! @delete
+    deleteIndicatorGeodata(input: deleteIndicatorGeodataInput! @spread): Indicador_Geodata! @delete
+    updateIndicatorGeodata(input: updateIndicatorGeodataInput! @spread): Indicador_Geodata! @update
+    createIndicatorGeodata(input: createIndicatorGeodataInput! @spread): Indicador_Geodata! @create
+}

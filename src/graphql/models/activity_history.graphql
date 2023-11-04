@@ -1,0 +1,23 @@
+type ActivityHistory {
+    id: ID!
+    history: String!
+    objective_history_id: ID!
+    parent_id: ID!
+    objective_history: ObjectiveHistory @belongsTo
+    parent: Activity @belongsTo
+    activitySourcesHistory: [ActivitySourceHistory] @hasMany
+}
+
+input newActivityHistoryInput {
+    history: String! @rules(apply: ["required"])
+    objective_history_id: ID! @rules(apply: ["required", "exists:objectives_history,id"])
+    parent_id: ID! @rules(apply: ["required", "exists:activities,id"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    activitiesHistory: [ActivityHistory!]! @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createActivityHistory(input: newActivityHistoryInput, @spread): ActivityHistory @create
+}

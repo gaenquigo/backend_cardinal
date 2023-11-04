@@ -1,0 +1,35 @@
+type Financial_cost_history {
+    id: ID!
+    financial_costs_id :Int
+    noveltyGastos_id :Int
+    financialCost_history: String
+}
+
+input registerFinancialCostHistoryInput {
+    id: ID 
+    financial_costs_id :Int
+    noveltyGastos_id :Int
+    financialCost_history: String
+}
+
+input idFinancialCostHistoryInput {
+    id: ID! @eq @rules(apply: ["required"])
+}
+
+input idSuccessInput {
+   noveltyGastos_id :Int
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createFinancialCostHistory(input: registerFinancialCostHistoryInput, @spread): Financial_cost_history @create
+    updateFinancialCostHistory(input: registerFinancialCostHistoryInput, @spread): Financial_cost_history @update
+    deleteFinancialCostHistory(input: idFinancialCostHistoryInput!, @spread): Financial_cost_history @delete
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    financialCostHistoryALL: [Financial_cost_history!]! @all
+    financialCostHistoryById(input: idFinancialCostHistoryInput @spread): Financial_cost_history @find
+   financialCostHistoryByIdSuccess(input: idSuccessInput @spread): [Financial_cost_history]  @all
+
+}
+

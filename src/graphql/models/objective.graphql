@@ -1,0 +1,37 @@
+type Objective {
+    id: ID!
+    project_id: ID!
+    objective: String!
+    weighing: Int!
+    project: Project
+    activities: [Activity]! @hasMany
+    objectiveProducts: [ObjectiveProduct]! @hasMany
+}
+
+input newObjectiveInput {
+    project_id: ID! @rules(apply: ["required","exists:projects,id"])
+    objective: String! @rules(apply: ["required", "string"])
+    weighing: Int! @rules(apply: ["numeric", "between:1,100"])
+}
+
+input editObjectiveInput {
+    id: ID! @rules(apply: ["required", "exists:objectives,id"])
+    project_id: ID! @rules(apply: ["required","exists:projects,id"])
+    objective: String @rules(apply: ["string"])
+    weighing: Int @rules(apply: ["numeric", "between:1,100"])
+}
+
+input idObjectiveInput {
+    id: ID! @eq @rules(apply: ["required", "exists:objectives,id"])
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    objective: [Objective!]! @all
+    objectiveById(input: idObjectiveInput @spread): Objective @find
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    createObjective(input: newObjectiveInput, @spread): Objective @create
+    updateObjective(input: editObjectiveInput, @spread): Objective @update
+    deleteObjective(input: idObjectiveInput!, @spread): Objective @delete
+}

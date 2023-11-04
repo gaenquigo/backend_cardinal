@@ -1,0 +1,40 @@
+type StrategicLine {
+    id: ID!
+    name: String!
+    weighing: Int!
+    p_a_i_id: Int!
+    pai: PAI! @belongsTo
+    programs: [Program] @hasMany
+}
+
+input registerStrategicLineInput {
+    name: String! @rules(apply: ["required", "string"])
+    weighing: Int! @rules(apply: ["required", "numeric", "between:1,100"])
+    p_a_i_id: Int! @rules(apply: ["required", "exists:pais,id"])
+}
+
+input editStrategicLineInput {
+    id: ID! @eq @rules(apply: ["required", "exists:strategic_lines,id"])
+    name: String @rules(apply: ["string"])
+    weighing: Int @rules(apply: ["numeric", "between:1,100"])
+    p_a_i_id: Int @rules(apply: ["exists:pais,id"])
+}
+
+input idStrategicLineInput {
+    id: ID! @eq @rules(apply: ["required", "exists:strategic_lines,id"])
+}
+
+input idStrategicLineByIdPaiInput {
+    p_a_i_id: Int! @eq
+}
+
+extend type Query @middleware(checks: ["auth:api"]) {
+    strategicLines: [StrategicLine!]! @all
+    strategicLinesByIdPai(input: idStrategicLineByIdPaiInput! @spread): [StrategicLine] @all
+}
+
+extend type Mutation @middleware(checks: ["auth:api"]) {
+    deleteStrategicLine(input: idStrategicLineInput! @spread): StrategicLine! @delete
+    createStrategicLine(input: registerStrategicLineInput! @spread): StrategicLine! @create
+    updateStrategicLine(input: editStrategicLineInput! @spread): StrategicLine! @update
+}
